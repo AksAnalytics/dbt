@@ -12,5 +12,5 @@ macros:
     description: '{{ doc("run_alter_statement_commands") }}'
     arguments:
       - name: alter_statement_array
-        type: [str]
+        type: array of double quoted strings
         description: A comma seperated array of statements that will be executed directly against the warehouse. 

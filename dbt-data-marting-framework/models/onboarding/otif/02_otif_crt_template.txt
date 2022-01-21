@@ -1,4 +1,5 @@
--- Copy the following text into a new crt_{table}.sql file
+-- Copy the following text into a new crt_{table}.sql file OR
+   Copy/paste the file, change the filename, and change the extensions to .sql
 -- Fill in the appropriate data in the table_metadata
 
 {% set table_metadata = {

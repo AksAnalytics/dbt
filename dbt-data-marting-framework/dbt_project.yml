@@ -1,0 +1,56 @@
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'snowflake_training'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project.
+profile: 'rehydrate'
+
+# These configurations specify where dbt should look for different types of files.
+# The `source-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+source-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+data-paths: ["data"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+
+vars:
+  stage_name: landing_stage
+  process_dt: '1901-01-01'
+  source_name: 'none'
+  storage_path: 'eon-collective-sandbox/workspaces/data/blob_landing'
+  storage_sub_path: '/new'
+  storage_service: 's3://'
+  env: 'dev'
+  storage_integration: 'dbt_s3_integration'
+  profiling_schema_name: 'PUBLIC'
+  profile_proc_name: 'CALLPROCPROFILE'
+  table_suffix_copy: '_copy'
+  table_suffix_z0: '_z0'
+  table_suffix_delete: '_delete'
+  table_suffix_z1: '_history'
+  table_suffix_z2: '_changes'
+  table_suffix_z3: ''
+  table_suffix_quarantine: '_quarantine'
+  table_suffix_validation: '_validation'
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+    - "target"
+    - "dbt_modules"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+# In this example config, we tell dbt to build all models in the example/ directory
+# as tables. These settings can be overridden in the individual model files
+# using the `{{ config(...) }}` macro.
+models:
+  snowflake_training:
+    # Config indicated by + and applies to all files under models/example/

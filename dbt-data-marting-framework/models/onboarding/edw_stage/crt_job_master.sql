@@ -3,22 +3,25 @@
 
 {% set table_metadata = {
     "schema_name": "eondryrun",
-    "table_name": "eo3_root_cause",
+    "table_name": "job_master",
     "transient_table": "false",
     "table_definition": "
         (
-            source_sys VARCHAR(100)   
-            ,salesordnum_cons VARCHAR(100)   
-            ,salesorditem_cons VARCHAR(100)   
-            ,delivnum_cons VARCHAR(100)   
-            ,delivitem_cons VARCHAR(100)   
-            ,root_code_l2 VARCHAR(50)   
-            ,root_code_l1 VARCHAR(50)   
-            ,atcv_flag VARCHAR(1)   
+            job_id INTEGER NOT NULL  
+            ,job_name VARCHAR(100) NOT NULL  
+            ,database VARCHAR(50)   
+            ,schema VARCHAR(50)   
+            ,source_sys VARCHAR(50)   
+            ,table_name VARCHAR(100) NOT NULL  
+            ,frequency VARCHAR(100)   
+            ,job_state VARCHAR(100)   
+            ,last_extract_timestamp TIMESTAMP WITHOUT TIME ZONE   
+            ,etl_crte_user VARCHAR(100)   
             ,etl_crte_ts TIMESTAMP WITHOUT TIME ZONE   
+            ,etl_updt_user VARCHAR(100)   
             ,etl_updt_ts TIMESTAMP WITHOUT TIME ZONE   
+            ,PRIMARY KEY (job_id, job_name, table_name)
         )
-        CLUSTER BY (salesordnum_cons)
     ",
     "full_refresh_ddl_statements": [
 

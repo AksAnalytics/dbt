@@ -3,7 +3,7 @@
 
 {% set table_metadata = {
     "schema_name": "eondryrun",
-    "table_name": "conslidated_customer_hierarchy",
+    "table_name": "consolidated_customer_hierarchy",
     "transient_table": "false",
     "table_definition": "
         (

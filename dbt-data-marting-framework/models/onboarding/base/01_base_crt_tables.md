@@ -1,4 +1,4 @@
-{% docs crt_hfm_vw_hfm_actual_trans_current %}
+{% docs crt_hfm_vw_hfm_acutal_trans_current %}
 
 Add documentation
 

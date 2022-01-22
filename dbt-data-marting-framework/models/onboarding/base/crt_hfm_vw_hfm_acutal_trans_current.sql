@@ -3,7 +3,7 @@
 
 {% set table_metadata = {
     "schema_name": "eondryrun",
-    "table_name": "hfm_vw_hfm_actual_trans_current",
+    "table_name": "hfm_vw_hfm_acutal_trans_current",
     "transient_table": "false",
     "table_definition": "
         (

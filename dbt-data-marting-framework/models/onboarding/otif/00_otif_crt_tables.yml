@@ -1,5 +1,8 @@
 version: 2
 
 models:
-  - name: crt_prototype
-    description: '{{ doc("crt_prototype_new") }}'
+  - name: crt_e03_root_cause
+    description: '{{ doc("crt_e03_root_cause") }}'
+
+  - name: crt_edw_shipments
+    description: '{{ doc("crt_edw_shipments") }}'

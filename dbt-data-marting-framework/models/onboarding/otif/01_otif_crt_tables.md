@@ -1,11 +1,14 @@
-{% docs crt_prototype_new %}
+{% docs crt_e03_root_cause %}
 
-This table contains clickstream events from the marketing website.
+Add documentation
 
-The events in this table are recorded by Snowplow and piped into the warehouse on an hourly basis. The following pages of the marketing site are tracked:
- - /
- - /about
- - /team
- - /contact-us
+{% enddocs %}
+
+
+
+
+{% docs crt_edw_shipments %}
+
+Add documentation
 
 {% enddocs %}

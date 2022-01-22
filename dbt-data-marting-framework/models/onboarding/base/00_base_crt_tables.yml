@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: crt_hfm_vw_hfm_actual_trans_current
+    description: '{{ doc("crt_hfm_vw_hfm_actual_trans_current") }}'
+
+  - name: crt_hfm_vw_hfm_forecast_trans_current
+    description: '{{ doc("crt_hfm_vw_hfm_actual_trans_current") }}'

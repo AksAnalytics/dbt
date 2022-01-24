@@ -37,16 +37,16 @@
 ```
 
 #### The Onboarding Folder
-Only used for the creating tables (crt models) and minor transformations (src+stg) in snowflake 
+This folder only contains "crt_" prefixed models which are used for creating tables that don't already exist in Snowflake. For a detailed explantion on crt_models see INSERT LINK. 
 
 #### The Staging Folder
-Tables that exist already from the RAW database and minor transformations are made
+This folder contains "stg_" prefixed models which are staging models from tables that were created in the RAW Database, specifically Zone 3 "_current" suffixed tables. These staging models read directly from the source table and should only perform light transformations on the data. It is a dbt best practice not to reference the source table directly and instead using a staging model. The models in this folder are further subdivided into folders based on their business dimension. For example, all staging models that are related to orders go in the "orders" folder. 
 
 #### The Intermediate Folder
-any transformation that will be referenced and/or reused downstream by models in marts folder (see below). Some of these intermediate models could exist simply for performance benefits. A storage unit for standardized logic.
+This folder contains "int_" prefixed models which are models that sit between the raw data and the meaningful data. Any transformation that will be referenced and/or reused downstream by models in marts folder (see below) go in this intermediate folder. Unlike the other folders, the intermediate folder has no substructure and it simply acts as a storage unit for standardized logic that can be reused over and over.
 
 #### The Marts Folder
-The final models that actual mean something to the business 
+This folder contains the final models that are meaninful to the business and the data consumers. They are the models that typically sit at the endpoints of different paths in the DAG, making references to models in any one of the previous folders. 
 
 
 Welcome to your new dbt project!

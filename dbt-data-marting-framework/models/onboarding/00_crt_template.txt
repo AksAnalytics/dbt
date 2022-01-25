@@ -14,6 +14,7 @@
     ]
 }%}
 
+-- DON'T REMOVE
 {%- set create_table_hook = create_data_mart_table(table_metadata) -%}
 
 {{ config(
@@ -23,10 +24,13 @@
 )}}
 
 
+-- Used to create a reference in DBT, REQUIRED DON'T REMOVE.
 WITH source AS (
     SELECT * FROM {{ table_metadata.table_name }}
 ),
 
+-- TRANSFORMATION PLACE HOLDER. EDIT BELOW 
+-- <REPLACE W/ TRANSFORMATION DESCRIPTION> 
 renamed AS (
     SELECT 
       *

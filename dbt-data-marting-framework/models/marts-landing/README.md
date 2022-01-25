@@ -1,2 +1,2 @@
-#### The Marts Folder
-This folder contains the final models that are meaninful to the business and the data consumers. They are the models that typically sit at the endpoints of different paths in the DAG, making references to models in any one of the previous folder structures. 
+#### The Marts Landing Folder
+We use this folder to drop things into the project as we move them to their proper place. 

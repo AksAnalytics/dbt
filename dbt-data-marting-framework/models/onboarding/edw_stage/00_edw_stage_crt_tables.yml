@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: crt_bods_hfm_currency_plrate
+    description: '{{ doc("crt_bods_hfm_currency_plrate") }}'
+
+  - name: crt_bods_hfm_vw_hfm_actual_trans_current
+    description: '{{ doc("crt_bods_hfm_vw_hfm_actual_trans_current") }}'
+
+  - name: crt_bods_hfm_vw_hfm_forecast_trans_current
+    description: '{{ doc("crt_bods_hfm_vw_hfm_forecast_trans_current") }}'
+  
+  - name: crt_c11_defualt_demand_group
+    description: '{{ doc("crt_c11_defualt_demand_group") }}'
+
+  - name: crt_consolidated_customer_hierarchy_stg_c11
+    description: '{{ doc("crt_consolidated_customer_hierarchy_stg_c11") }}'
+
+  - name: crt_consolidated_customer_hierarchy_stg_e03
+    description: '{{ doc("crt_consolidated_customer_hierarchy_stg_e03") }}'
+
+  - name: crt_consolidated_customer_hierarchy_stg
+    description: '{{ doc("crt_consolidated_customer_hierarchy_stg") }}'
+
+  - name: crt_consolidated_job_history
+    description: '{{ doc("crt_consolidated_job_history") }}'
+
+  - name: crt_demand_group_e03_determination_stg
+    description: '{{ doc("crt_demand_group_e03_determination_stg") }}'
+
+  - name: crt_demand_group_e03_determination_stg1
+    description: '{{ doc("crt_demand_group_e03_determination_stg1") }}'
+
+  - name: crt_demand_group_e03_determination_stg2
+    description: '{{ doc("crt_demand_group_e03_determination_stg2") }}'
+
+  - name: crt_dim_calendar
+    description: '{{ doc("crt_dim_calendar") }}'
+
+  - name: crt_dim_factory_calendar
+    description: '{{ doc("crt_dim_factory_calendar") }}'
+
+  - name: crt_job_history
+    description: '{{ doc("crt_job_history") }}'
+
+  - name: crt_job_master
+    description: '{{ doc("crt_job_master") }}'
+
+  - name: crt_otif_filter
+    description: '{{ doc("crt_otif_filter") }}'
+
+  - name: crt_plant_regions
+    description: '{{ doc("crt_plant_regions") }}'
+
+  - name: crt_texts
+    description: '{{ doc("crt_texts") }}'

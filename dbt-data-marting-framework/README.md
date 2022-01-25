@@ -1,3 +1,4 @@
+ The purpose of the framework is to manage snowflake objects within a dbt project. When managing something you need to be able to create it, change it, organize, and document it. This document describes how all of these critical processes are done within dbt. 
  
  ### The DBT Project Structure 
 

@@ -1,2 +1,0 @@
-#### The Intermediate Folder
-This folder contains "int_" prefixed models which are models that sit between the raw data and the meaningful data. Any transformation that will be referenced and/or reused downstream by models in the marts folder (see below) go in this intermediate folder. Unlike the other folders, the intermediate folder has no substructure and it simply acts as a storage unit for standardized logic that can be reused over and over.

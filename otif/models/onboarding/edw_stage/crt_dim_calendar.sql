@@ -2,10 +2,8 @@
 -- Fill in the appropriate data in the table_metadata
 
 {% set table_metadata = {
-    "schema_name": "eondryrun",
-    "table_name": "dim_calendar",
-    "transient_table": "false",
     "table_definition": "
+        CREATE TABLE IF NOT EXISTS edw_stage.dim_calendar
         (
             dy_id VARCHAR(256)   
             ,dy_dte TIMESTAMP WITHOUT TIME ZONE   
@@ -74,29 +72,8 @@
             ,special_event_name VARCHAR(256)   
             ,etl_batch_id INTEGER   
         )
-    ",
-    "full_refresh_ddl_statements": [
-
-    ]
+    "
 }%}
 
-{%- set create_table_hook = create_data_mart_table(table_metadata) -%}
-
-{{ config(
-    materialized = "table",
-    pre_hook = create_table_hook,
-    schema = table_metadata.schema_name
-)}}
-
-
-WITH source AS (
-    SELECT * FROM {{ table_metadata.table_name }}
-),
-
-renamed AS (
-    SELECT 
-      *
-    FROM source
-)
-
-SELECT * FROM renamed
+{{ config(materialized = "ephemeral") }}
+{% do run_query(table_metadata.table_definition) %}

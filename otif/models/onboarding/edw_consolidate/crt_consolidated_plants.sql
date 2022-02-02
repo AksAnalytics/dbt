@@ -2,10 +2,8 @@
 -- Fill in the appropriate data in the table_metadata
 
 {% set table_metadata = {
-    "schema_name": "eondryrun",
-    "table_name": "consolidated_plants",
-    "transient_table": "false",
     "table_definition": "
+        CREATE TABLE IF NOT EXISTS edw_consolidated.consolidated_plants
         (
             source_sys VARCHAR(3)   
             ,plant VARCHAR(8)   
@@ -13,29 +11,8 @@
             ,plant_country VARCHAR(6)   
             ,region VARCHAR(4)   
         )
-    ",
-    "full_refresh_ddl_statements": [
-
-    ]
+    "
 }%}
 
-{%- set create_table_hook = create_data_mart_table(table_metadata) -%}
-
-{{ config(
-    materialized = "table",
-    pre_hook = create_table_hook,
-    schema = table_metadata.schema_name
-)}}
-
-
-WITH source AS (
-    SELECT * FROM {{ table_metadata.table_name }}
-),
-
-renamed AS (
-    SELECT 
-      *
-    FROM source
-)
-
-SELECT * FROM renamed
+{{ config(materialized = "ephemeral") }}
+{% do run_query(table_metadata.table_definition) %}

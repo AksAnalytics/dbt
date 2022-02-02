@@ -2,10 +2,8 @@
 -- Fill in the appropriate data in the table_metadata
 
 {% set table_metadata = {
-    "schema_name": "eondryrun",
-    "table_name": "job_history",
-    "transient_table": "false",
     "table_definition": "
+        CREATE TABLE IF NOT EXISTS edw_stage.job_history
         (
             run_id BIGINT NOT NULL  
             ,job_id INTEGER NOT NULL  
@@ -25,29 +23,8 @@
             ,delete_count BIGINT   
             ,PRIMARY KEY (run_id, job_id, job_name, table_name, run_seq)
         )
-    ",
-    "full_refresh_ddl_statements": [
-
-    ]
+    "
 }%}
 
-{%- set create_table_hook = create_data_mart_table(table_metadata) -%}
-
-{{ config(
-    materialized = "table",
-    pre_hook = create_table_hook,
-    schema = table_metadata.schema_name
-)}}
-
-
-WITH source AS (
-    SELECT * FROM {{ table_metadata.table_name }}
-),
-
-renamed AS (
-    SELECT 
-      *
-    FROM source
-)
-
-SELECT * FROM renamed
+{{ config(materialized = "ephemeral") }}
+{% do run_query(table_metadata.table_definition) %}

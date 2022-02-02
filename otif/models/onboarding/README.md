@@ -1,0 +1,2 @@
+### The Onboarding Folder
+This folder only contains "crt_" prefixed models which are used for creating tables in Snowflake. We use the crt models to dump all the tables that we got from the Redshift extract. 

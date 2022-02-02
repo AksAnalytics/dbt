@@ -1,7 +1,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'snowflake_training'
+name: 'otif_data_mart'
 version: '1.0.0'
 config-version: 2
 
@@ -52,5 +52,5 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  snowflake_training:
+  otif_data_mart:
     # Config indicated by + and applies to all files under models/example/

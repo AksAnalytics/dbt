@@ -2,10 +2,8 @@
 -- Fill in the appropriate data in the table_metadata
 
 {% set table_metadata = {
-    "schema_name": "eondryrun",
-    "table_name": "demand_group_e03_determination_stg2",
-    "transient_table": "false",
     "table_definition": "
+       CREATE TABLE IF NOT EXISTS edw_stage.demand_group_e03_determination_stg2
        (
             zdmdgrp_factors_trans VARCHAR(65535)   
             ,material_cons VARCHAR(100)   
@@ -33,29 +31,8 @@
             ,dgrp BIGINT   
             ,rownum BIGINT   
         )
-    ",
-    "full_refresh_ddl_statements": [
-
-    ]
+    "
 }%}
 
-{%- set create_table_hook = create_data_mart_table(table_metadata) -%}
-
-{{ config(
-    materialized = "table",
-    pre_hook = create_table_hook,
-    schema = table_metadata.schema_name
-)}}
-
-
-WITH source AS (
-    SELECT * FROM {{ table_metadata.table_name }}
-),
-
-renamed AS (
-    SELECT 
-      *
-    FROM source
-)
-
-SELECT * FROM renamed
+{{ config(materialized = "ephermeral") }}
+{% do run_query(table_metadata.table_definition) %}

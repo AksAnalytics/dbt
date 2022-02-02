@@ -2,10 +2,8 @@
 -- Fill in the appropriate data in the table_metadata
 
 {% set table_metadata = {
-    "schema_name": "eondryrun",
-    "table_name": "conslidated_customer_sales",
-    "transient_table": "false",
     "table_definition": "
+        CREATE TABLE IF NOT EXISTS edw.consolidated.consolidated_customer_sales
         (
             source_sys VARCHAR(65535) NOT NULL  
             ,customer_cons VARCHAR(65535) NOT NULL  
@@ -38,29 +36,8 @@
             ,PRIMARY KEY (source_sys, customer_cons, salesdiv_cons, salesorg_cons, salesdist_cons)
         )
         CLUSTER BY (customer_cons)
-    ",
-    "full_refresh_ddl_statements": [
-
-    ]
+    "
 }%}
 
-{%- set create_table_hook = create_data_mart_table(table_metadata) -%}
-
-{{ config(
-    materialized = "table",
-    pre_hook = create_table_hook,
-    schema = table_metadata.schema_name
-)}}
-
-
-WITH source AS (
-    SELECT * FROM {{ table_metadata.table_name }}
-),
-
-renamed AS (
-    SELECT 
-      *
-    FROM source
-)
-
-SELECT * FROM renamed
+{{ config(materialized = "ephermeral") }}
+{% do run_query(table_metadata.table_definition) %}

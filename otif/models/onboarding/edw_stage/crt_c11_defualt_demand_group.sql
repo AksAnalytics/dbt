@@ -2,39 +2,16 @@
 -- Fill in the appropriate data in the table_metadata
 
 {% set table_metadata = {
-    "schema_name": "eondryrun",
-    "table_name": "c11_default_demand_group",
-    "transient_table": "false",
     "table_definition": "
+       CREATE TABLE IF NOT EXISTS edw_stage.c11_default_demand_group
        (
             z_name VARCHAR(500)   
             ,z_key VARCHAR(500)   
             ,z_var VARCHAR(500)   
             ,z_comment VARCHAR(500)   
         )
-    ",
-    "full_refresh_ddl_statements": [
-
-    ]
+    "
 }%}
 
-{%- set create_table_hook = create_data_mart_table(table_metadata) -%}
-
-{{ config(
-    materialized = "table",
-    pre_hook = create_table_hook,
-    schema = table_metadata.schema_name
-)}}
-
-
-WITH source AS (
-    SELECT * FROM {{ table_metadata.table_name }}
-),
-
-renamed AS (
-    SELECT 
-      *
-    FROM source
-)
-
-SELECT * FROM renamed
+{{ config(materialized = "ephermeral") }}
+{% do run_query(table_metadata.table_definition) %}

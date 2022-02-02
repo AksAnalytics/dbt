@@ -1,0 +1,23 @@
+WITH base_mvke AS (
+
+    SELECT * FROM sapc11.mvke_current
+),
+
+final AS (
+	
+    SELECT 
+      'C11' AS SOURCE_SYS,
+      mvke.MATNR AS MATERIAL_CONS,
+      mvke.VTWEG AS MATERIAL_SALESDIV_CONS,
+      mvke.VKORG AS MATERIAL_SALESORG_CONS,
+      mvke.VMSTA AS MATERIAL_CONS_STATUS,
+      mvke.LOADDTS AS LOADDTS,
+      v_job_name AS ETL_CRTE_USER,
+      CURRENT_TIMESTAMP AS ETL_CRTE_TS,
+      NULL AS ETL_UPDT_USER,
+      CAST(NULL AS TIMESTAMP) AS ETL_UPDT_TS
+    FROM base_mvke AS mvke
+)
+
+SELECT * FROM final 
+

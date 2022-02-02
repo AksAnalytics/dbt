@@ -3,3 +3,7 @@ packages:
     subdirectory: "rehydrate"
     revision: main
     warn-unpinned: false
+  - package: dbt-labs/dbt_utils
+    version: 0.7.1
+  - package: Datavault-UK/dbtvault
+    version: 0.7.8

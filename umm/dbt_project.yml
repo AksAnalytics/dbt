@@ -1,7 +1,7 @@
 # Name your project! Project names should contain only lowercase characters
 # and underscores. A good package name should reflect your organization's
 # name or the intended use of these models
-name: 'rehydrate'
+name: 'umm_data_mart'
 version: '1.0.0'
 config-version: 2
 
@@ -27,21 +27,17 @@ vars:
   storage_sub_path: '/new'
   storage_service: 's3://'
   env: 'dev'
-  storage_integration: 's3_integration'
+  storage_integration: 'dbt_s3_integration'
   profiling_schema_name: 'PUBLIC'
   profile_proc_name: 'CALLPROCPROFILE'
   table_suffix_copy: '_copy'
-  table_suffix_z0: '_landing'
+  table_suffix_z0: '_z0'
   table_suffix_delete: '_delete'
   table_suffix_z1: '_history'
   table_suffix_z2: '_changes'
   table_suffix_z3: ''
-  skip_copy_into_z0: 'false'
-  skip_populate_into_z0: 'false'
-  load_from_hive: 'false'
-  load_latest_full_load: 'false'
-  skip_dataset_validation_checks: ''
-  load_latest_full_load_loaddts: 'false'
+  table_suffix_quarantine: '_quarantine'
+  table_suffix_validation: '_validation'
 
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
@@ -56,22 +52,5 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  caspian_data_ingestion_framework:
+  umm_data_mart:
     # Config indicated by + and applies to all files under models/example/
-    zones:
-      "0 - Landing":
-          materialized: view
-          +tags:
-            - "landing"
-            - "core"
-      "1 - raw":
-          materialized: table
-          +tags:
-            - "raw"
-            - "core"
-          "Zone 1":
-            materialized: table
-          "Zone 2":
-            materialized: table
-          "Zone 3":
-            materialized: table

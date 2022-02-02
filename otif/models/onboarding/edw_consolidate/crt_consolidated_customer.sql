@@ -3,7 +3,7 @@
 
 {% set table_metadata = {
     "table_definition": "
-        CREATE TABLE IF NOT EXISTS edw.consolidated.consolidated_customer
+        CREATE TABLE IF NOT EXISTS edw_consolidated.consolidated_customer
         (
             source_sys VARCHAR(65535) NOT NULL  
             ,customer_cons VARCHAR(65535) NOT NULL  
@@ -26,5 +26,5 @@
     "
 }%}
 
-{{ config(materialized = "ephermeral") }}
+{{ config(materialized = "ephemeral") }}
 {% do run_query(table_metadata.table_definition) %}

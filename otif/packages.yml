@@ -1,8 +1,4 @@
 packages:
-  - git: "git@bitbucket.org:sbddatalake/sbd_caspian_dbt_dif.git"
-    subdirectory: "rehydrate"
-    revision: main
-    warn-unpinned: false
   - package: dbt-labs/dbt_utils
     version: 0.7.1
   - package: Datavault-UK/dbtvault

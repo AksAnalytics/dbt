@@ -3,7 +3,7 @@
 
 {% set table_metadata = {
     "table_definition": "
-        CREATE TABLE IF NOT EXISTS otif.eo3_root_cause
+        CREATE TABLE IF NOT EXISTS otif.e03_root_cause
         (
             source_sys VARCHAR(100)   
             ,salesordnum_cons VARCHAR(100)   
@@ -20,5 +20,5 @@
     "
 }%}
 
-{{ config(materialized = "ephermeral") }}
+{{ config(materialized = "ephemeral") }}
 {% do run_query(table_metadata.table_definition) %}

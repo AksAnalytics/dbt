@@ -2,10 +2,8 @@
 -- Fill in the appropriate data in the table_metadata
 
 {% set table_metadata = {
-    "schema_name": "eondryrun",
-    "table_name": "edw_shipments",
-    "transient_table": "false",
     "table_definition": "
+        CREATE TABLE IF NOT EXISTS otif.edw_shipments
         (
             source_schema VARCHAR(256)   
             ,order_number VARCHAR(256)   
@@ -256,29 +254,8 @@
             ,etl_crte_ts TIMESTAMP WITHOUT TIME ZONE   
         )
         CLUSTER BY (sku)
-    ",
-    "full_refresh_ddl_statements": [
-
-    ]
+    "
 }%}
 
-{%- set create_table_hook = create_data_mart_table(table_metadata) -%}
-
-{{ config(
-    materialized = "table",
-    pre_hook = create_table_hook,
-    schema = table_metadata.schema_name
-)}}
-
-
-WITH source AS (
-    SELECT * FROM {{ table_metadata.table_name }}
-),
-
-renamed AS (
-    SELECT 
-      *
-    FROM source
-)
-
-SELECT * FROM renamed
+{{ config(materialized = "ephermeral") }}
+{% do run_query(table_metadata.table_definition) %}

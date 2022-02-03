@@ -2,7 +2,7 @@
 	 "table_definition":" 
 		CREATE TABLE IF NOT EXISTS global_pl.testsp
 (
-	id INTEGER  DEFAULT "identity"(985663, 0, '1,1'::text) 
+	id INTEGER  DEFAULT IDENTITY(985663, 0) 
 	,dtrun VARCHAR(100)   
 ) 
 	"

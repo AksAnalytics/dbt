@@ -2,7 +2,7 @@
 	 "table_definition":" 
 		CREATE TABLE IF NOT EXISTS global_pl.status_master
 (
-	id INTEGER NOT NULL DEFAULT "identity"(911226, 0, '1,1'::text) 
+	id INTEGER NOT NULL DEFAULT IDENTITY(911226, 0)
 	,tbl_type VARCHAR(100)   
 	,job_nm VARCHAR(100) NOT NULL  
 	,tgt_tbl_nm VARCHAR(100)   

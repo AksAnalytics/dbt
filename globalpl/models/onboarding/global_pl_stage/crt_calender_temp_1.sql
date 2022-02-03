@@ -4,9 +4,9 @@
 (
 	id INTEGER   
 	,date DATE   
-	,"year" SMALLINT   
-	,"month" SMALLINT   
-	,"day" SMALLINT   
+	,year SMALLINT   
+	,month SMALLINT   
+	,day SMALLINT   
 	,quarter SMALLINT   
 	,week SMALLINT   
 	,day_name VARCHAR(9)   

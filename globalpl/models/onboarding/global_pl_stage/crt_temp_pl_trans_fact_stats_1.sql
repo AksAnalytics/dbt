@@ -12,14 +12,7 @@
 	,sum_bar_amt_lc NUMERIC(38,10)   
 	,sum_bar_amt_usd NUMERIC(38,10)   
 )
-DISTSTYLE EVEN
- SORTKEY (
-	erp_source_list
-	, cal_date
-	)
-;
-ALTER TABLE global_pl_stage.temp_pl_trans_fact_stats_1 owner to base_admin; 
-	"
+"
 }%} 
 
 {{ config(materialized = "ephemeral") }}

@@ -2,7 +2,7 @@
 	 "table_definition":" 
 		CREATE TABLE IF NOT EXISTS global_pl.status_history_1
 (
-	run_id INTEGER NOT NULL DEFAULT "identity"(911348, 0, '1,1'::text) 
+	run_id INTEGER NOT NULL DEFAULT IDENTITY(911348, 0) 
 	,job_nm VARCHAR(100)   
 	,run_date DATE   
 	,run_seq INTEGER   

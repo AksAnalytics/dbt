@@ -28,14 +28,7 @@
 	,hive_loaddatetime VARCHAR(500)   
 	,PRIMARY KEY (erp_customer_number, erp_source)
 )
-DISTSTYLE ALL
- SORTKEY (
-	erp_customer_number
-	, erp_customer_name
-	)
-;
-ALTER TABLE global_pl_stage.customer_master owner to base_admin; 
-	"
+"
 }%} 
 
 {{ config(materialized = "ephemeral") }}

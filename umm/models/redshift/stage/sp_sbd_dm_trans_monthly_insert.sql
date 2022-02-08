@@ -18,7 +18,7 @@ hfm AS (
     SELECT * FROM bods.hfm_vw_hfm_actual_trans_current
 ),
 
-(  
+byd_pl_trans_archive_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -42,12 +42,9 @@ hfm AS (
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency 
     WHERE t.id IS NOT NULL
-)
+),
 
-
-    
-
-(  
+hfm_vw_hfm_actual_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -65,11 +62,9 @@ hfm AS (
       ON t.BAR_ACCT = a.bar_account 
     LEFT OUTER JOIN b 
       ON t.BAR_ENTITY = b.bar_entity
-)
+),
 
-    
-
-( 
+nav_storage_pl_trans_current AS ( 
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -92,11 +87,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)
-
-
-    
-(  
+),
+   
+nav_eur_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -119,9 +112,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)
+),
 
-(  
+ufida_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -144,10 +137,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)
+),
 
-
-(  
+orch_bgi_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -170,10 +162,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)
+),
 
-
-(  
+cont_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -196,10 +187,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)
+),
 
-
-(  
+movex_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -222,11 +212,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-
-
-(  
+ifs_pl_trans_current AS (  
     SELECT 
       t.ACCOUNT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -251,9 +239,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-(  
+nelson_asmp_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -278,11 +266,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-
-
-(  
+agresso_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -305,11 +291,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-
-
-(  
+nav_assm_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -332,11 +316,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-
-
-(  
+qad_brazil_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -359,11 +341,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-
-
-(  
+qad_dech_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -386,11 +366,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-
-
-(  
+qad_chile_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -413,9 +391,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-(  
+qad_argentina_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -438,11 +416,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-
-
-(  
+qad_peru_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -465,9 +441,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-(  
+p02_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -492,9 +468,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-(  
+baan_besco_tw_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -517,10 +493,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-
-(  
+navision_actuals_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRANDAS col3, t.BAR_BUAS col4, t.BAR_CURRTYPEAS col5, 
       t.BAR_CUSTNOAS col6, t.BAR_ENTITYAS col7, t.BAR_FUNCTIONAS col8, t.BAR_PERIODAS col9, t.BAR_PRODUCTAS col10, 
@@ -543,9 +518,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-(  
+jde_na_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -568,10 +543,9 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
 
-
-(  
+orch_ppe_pl_trans_current AS (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
       t.BAR_CUSTNO AS col6, t.BAR_ENTITY AS col7, t.BAR_FUNCTION AS col8, t.BAR_PERIOD AS col9, t.BAR_PRODUCT AS col10, 
@@ -594,4 +568,62 @@ hfm AS (
       ON t.bar_year = hfm.bar_year 
      AND t.bar_period = hfm.bar_period 
      AND hfm.bar_function = b.bar_entity_currency
-)		
+),		
+
+union_table AS (
+
+    SELECT * FROM byd_pl_trans_archive_current
+    UNION ALL
+    SELECT * FROM hfm_vw_hfm_actual_trans_current
+    UNION ALL
+    SELECT * FROM nav_storage_pl_trans_current
+    UNION ALL
+    SELECT * FROM nav_eur_pl_trans_current
+    UNION ALL
+    SELECT * FROM ufida_pl_trans_current
+    UNION ALL
+    SELECT * FROM orch_bgi_pl_trans_current
+    UNION ALL
+    SELECT * FROM cont_pl_trans_current
+    UNION ALL
+    SELECT * FROM movex_pl_trans_current
+    UNION ALL
+    SELECT * FROM ifs_pl_trans_current
+    UNION ALL
+    SELECT * FROM nelson_asmp_pl_trans_current
+    UNION ALL
+    SELECT * FROM agresso_pl_trans_current
+    UNION ALL
+    SELECT * FROM nav_assm_pl_trans_current
+    UNION ALL
+    SELECT * FROM qad_brazil_pl_trans_current
+    UNION ALL
+    SELECT * FROM qad_dech_pl_trans_current
+    UNION ALL
+    SELECT * FROM qad_chile_pl_trans_current
+    UNION ALL
+    SELECT * FROM qad_argentina_pl_trans_current
+    UNION ALL
+    SELECT * FROM qad_peru_pl_trans_current
+    UNION ALL
+    SELECT * FROM p02_pl_trans_current
+    UNION ALL
+    SELECT * FROM baan_besco_tw_pl_trans_current
+    UNION ALL
+    SELECT * FROM navision_actuals_trans_current
+    UNION ALL
+    SELECT * FROM jde_na_pl_trans_current
+    UNION ALL
+    SELECT * FROM orch_ppe_pl_trans_current
+),
+
+final AS (
+    SELECT 
+    
+    
+    FROM union_table
+
+)
+
+SELECT * FROM final
+

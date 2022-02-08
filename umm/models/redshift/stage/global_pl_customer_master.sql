@@ -6,116 +6,56 @@
 WITH c11_customer AS (
 
     SELECT 
-      KUNNR,
-      ADRNR,
-      BRAN1,
-      BRAN2,
-      BRAN3,
-      BRAN4,
-      BRAN5,
-      BRSCH,
-      CITYC,
-      COUNC,
-      LAND1,
-      NAME1,
-      ORT01,
-      ORT02,
-      PFACH,
-      PSTL2,
-      PSTLZ,
-      REGIO,
-      RPMKR,
-      'C11',
-      STRAS,
-      'etl_user',
-      to_date(GETDATE(),'yyyyMMdd') 
+      KUNNR, ADRNR, BRAN1, BRAN2, BRAN3,
+      BRAN4, BRAN5, BRSCH, CITYC, COUNC,
+      LAND1, NAME1, ORT01, ORT02, PFACH,
+      PSTL2, PSTLZ, REGIO, RPMKR, 
+      'C11' AS ERP_SOURCE,
+      STRAS, 
+      'etl_user' AS ETL_CRTE_USER,
+      to_date(GETDATE(),'yyyyMMdd') AS ETL_CRTE_TS
     FROM bods.c11_0customer_attr_current
 ),
 
 e03_customer AS (
 
     SELECT
-      KUNNR,
-      ADRNR,
-      BRAN1,
-      BRAN2,
-      BRAN3,
-      BRAN4,
-      BRAN5,
-      BRSCH,
-      CITYC,
-      COUNC,
-      LAND1,
-      NAME1,
-      ORT01,
-      ORT02,
-      PFACH,
-      PSTL2,
-      PSTLZ,
-      REGIO,
-      RPMKR,
-      'E03',
-      STRAS,
-      'etl_user',
-      to_date(GETDATE(),'yyyyMMdd') 
+      KUNNR, ADRNR, BRAN1, BRAN2, BRAN3,
+      BRAN4, BRAN5, BRSCH, CITYC, COUNC,
+      LAND1, NAME1, ORT01, ORT02, PFACH,
+      PSTL2, PSTLZ, REGIO, RPMKR, 
+      'E03' AS ERP_SOURCE,
+      STRAS, 
+      'etl_user' AS ETL_CRTE_USER,
+      to_date(GETDATE(),'yyyyMMdd') AS ETL_CRTE_TS
     FROM bods.e03_0customer_attr_current
 ),
 
 extr_p10_customer AS (
 
     SELECT
-      KUNNR,
-      ADRNR,
-      BRAN1,
-      BRAN2,
-      BRAN3,
-      BRAN4,
-      BRAN5,
-      BRSCH,
-      CITYC,
-      COUNC,
-      LAND1,
-      NAME1,
-      ORT01,
-      ORT02,
-      PFACH,
-      PSTL2,
-      PSTLZ,
-      REGIO,
-      RPMKR,
-      'P10',
-      STRAS,
-      'etl_user',
-      to_date(GETDATE(),'yyyyMMdd') 
+      KUNNR, ADRNR, BRAN1, BRAN2, BRAN3,
+      BRAN4, BRAN5, BRSCH, CITYC, COUNC,
+      LAND1, NAME1, ORT01, ORT02, PFACH,
+      PSTL2, PSTLZ, REGIO, RPMKR, 
+      'P10' AS ERP_SOURCE,
+      STRAS, 
+      'etl_user' AS ETL_CRTE_USER,
+      to_date(GETDATE(),'yyyyMMdd') AS ETL_CRTE_TS
     FROM bods.extr_p10_0customer_attr_current
 ),
 
 extr_shp_customer AS (
 
     SELECT
-     KUNNR,
-      ADRNR,
-      BRAN1,
-      BRAN2,
-      BRAN3,
-      BRAN4,
-      BRAN5,
-      BRSCH,
-      CITYC,
-      COUNC,
-      LAND1,
-      NAME1,
-      ORT01,
-      ORT02,
-      PFACH,
-      PSTL2,
-      PSTLZ,
-      REGIO,
-      RPMKR,
-      'SHP',
-      STRAS,
-      'etl_user',
-      to_date(GETDATE(),'yyyyMMdd') 
+      KUNNR, ADRNR, BRAN1, BRAN2, BRAN3,
+      BRAN4, BRAN5, BRSCH, CITYC, COUNC,
+      LAND1, NAME1, ORT01, ORT02, PFACH,
+      PSTL2, PSTLZ, REGIO, RPMKR, 
+      'SHP' AS ERP_SOURCE,
+      STRAS, 
+      'etl_user' AS ETL_CRTE_USER,
+      to_date(GETDATE(),'yyyyMMdd') AS ETL_CRTE_TS
     FROM bods.extr_shp_customer_attr_current
 ),
 
@@ -152,10 +92,10 @@ final AS (
       PSTLZ AS ERP_CUSTOMER_POSTAL_CODE,
       REGIO AS ERP_CUSTOMER_REGION,
       RPMKR AS ERP_CUSTOMER_REGIONAL_MARKET,
-      'C11' AS ERP_SOURCE,
+      ERP_SOURCE,
       STRAS AS ERP_CUSTOMER_ADDRESS,
-      'etl_user' AS ETL_CRTE_USER,
-      to_date(GETDATE(),'yyyyMMdd') AS ETL_CRTE_TS
+      ETL_CRTE_USER,
+      ETL_CRTE_TS
     FROM union_table
 )
 

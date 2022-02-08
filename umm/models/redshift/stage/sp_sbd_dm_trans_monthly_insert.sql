@@ -618,11 +618,56 @@ union_table AS (
 ),
 
 final AS (
-    SELECT 
-    
-    
-    FROM union_table
 
+    SELECT
+      col1 AS bar_account,
+      col2 AS bar_amt_lc,
+      col3 AS bar_brand,
+      col4 AS bar_bu,
+      col5 AS bar_currtype,
+      col6 AS bar_customer,
+      col7 AS bar_entity,
+      col8 AS bar_function,
+      col9 AS bar_period,
+      col10 AS bar_product,
+      col11 AS bar_scenario,
+      col12 AS bar_shipto,
+      col13 AS bar_year,
+      col14 AS bar_fiscal_period,
+      col15 AS erp_account,
+      col16 AS erp_brand_code,
+      col17 AS erp_business_area,
+      col18 AS erp_company_code,
+      col19 AS erp_cost_center,
+      col20 AS erp_doc_type,
+      col21 AS erp_doc_line_num,
+      col22 AS erp_doc_num,
+      col23 AS erp_document_text,
+      col24 AS erp_vendor,
+      col25 AS erp_material,
+      col26 AS erp_customer_parent,
+      col27 AS erp_posting_date,
+      col28 AS erp_quantity,
+      col29 AS erp_quantity_uom,
+      col30 AS erp_ref_doc_type,
+      col31 AS erp_ref_doc_line_num,
+      col32 AS erp_ref_doc_num,
+      col33 AS erp_profit_center,
+      col34 AS erp_sales_group,
+      col35 AS erp_sales_office,
+      col36 AS erp_customer_ship_to,
+      col37 AS erp_customer_sold_to,
+      col38 AS erp_plant,
+      col39 AS erp_chartaccts,
+      col40 AS bar_bods_loaddatetime,
+      col41 AS bar_bods_record_id,
+      col42 AS erp_source,
+      col43 AS bar_s_entity_currency,
+      col44 AS bar_s_curr_rate_actual,
+      col45 AS bar_amt_usd,
+      col46 AS etl_crte_ts,
+      col47 AS etl_crte_user
+    FROM union_table
 )
 
 SELECT * FROM final

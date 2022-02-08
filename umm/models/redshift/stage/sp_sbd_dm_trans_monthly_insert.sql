@@ -1,3 +1,22 @@
+{{config(
+    materialized = 'table'
+    schema = 'global_pl'
+)}}
+
+WITH a AS (
+
+    SELECT * FROM global_pl.bar_acct_attr
+),
+
+b AS (
+
+    SELECT * FROM global_pl.bar_entity_attr
+),
+
+hfm AS (
+
+    SELECT * FROM bods.hfm_vw_hfm_actual_trans_current
+),
 
 (  
     SELECT 
@@ -13,9 +32,20 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47   
-    FROM bods.byd_pl_trans_archive_current t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )  where t.id is not null
+    FROM bods.byd_pl_trans_archive_current t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency 
+    WHERE t.id IS NOT NULL
 )
 
+
+    
 
 (  
     SELECT 
@@ -30,9 +60,14 @@
       t.ID AS col41, 'HFM'AS col42, b.bar_entity_currency AS col43, t.bar_amt AS col44, t.bar_amt AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47 
-    FROM bods.hfm_vw_hfm_actual_trans_current t  LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity 
+    FROM bods.hfm_vw_hfm_actual_trans_current t  
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
 )
 
+    
 
 ( 
     SELECT 
@@ -48,10 +83,19 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47 
-    FROM bods.nav_storage_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.nav_storage_pl_trans_current t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )
 
 
+    
 (  
     SELECT 
       t.BAR_ACCT AS col1, t.BAR_AMT AS col2, t.BAR_BRAND AS col3, t.BAR_BU AS col4, t.BAR_CURRTYPE AS col5, 
@@ -66,7 +110,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM bods.nav_eur_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.nav_eur_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )
 
 (  
@@ -83,7 +135,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM bods.ufida_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.ufida_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )
 
 
@@ -101,7 +161,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47 
-    FROM bods.orch_bgi_pl_trans_current    t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.orch_bgi_pl_trans_current t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )
 
 
@@ -119,7 +187,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47  
-    FROM bods.cont_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.cont_pl_trans_current t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )
 
 
@@ -137,7 +213,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM bods.movex_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.movex_pl_trans_current t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 
@@ -158,7 +242,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM   bods.ifs_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.ifs_pl_trans_current t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 (  
@@ -177,7 +269,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM   bods.nelson_asmp_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.nelson_asmp_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 
@@ -196,7 +296,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM   bods.agresso_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.agresso_pl_trans_current t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 
@@ -215,7 +323,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user'  AS col47
-    FROM   bods.nav_assm_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.nav_assm_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 
@@ -234,7 +350,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM   bods.qad_brazil_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.qad_brazil_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 
@@ -253,7 +377,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM   bods.qad_dech_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.qad_dech_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 
@@ -272,7 +404,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM   bods.qad_chile_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.qad_chile_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 (  
@@ -289,7 +429,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47 
-    FROM   bods.qad_argentina_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.qad_argentina_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 
@@ -308,7 +456,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM   bods.qad_peru_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.qad_peru_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 (  
@@ -327,7 +483,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM   bods.p02_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.p02_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 (  
@@ -344,7 +508,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM bods.baan_besco_tw_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.baan_besco_tw_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 
@@ -362,7 +534,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM   bods.navision_actuals_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.navision_actuals_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 (  
@@ -379,7 +559,15 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM   bods.jde_na_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.jde_na_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		
 
 
@@ -397,5 +585,13 @@
       (t.BAR_AMT * hfm.bar_amt * COALESCE (a.flipsign::INTEGER,1)) AS col45, 
       to_date(GETDATE(),'yyyyMMdd') AS col46, 
       'etl_user' AS col47
-    FROM bods.orch_ppe_pl_trans_current  t LEFT OUTER JOIN global_pl.bar_acct_attr a ON t.BAR_ACCT = a.bar_account LEFT OUTER JOIN global_pl.bar_entity_attr b ON t.BAR_ENTITY = b.bar_entity LEFT OUTER JOIN bods.hfm_vw_hfm_actual_trans_current hfm ON (t.bar_year = hfm.bar_year AND t.bar_period = hfm.bar_period AND hfm.bar_function = b.bar_entity_currency )
+    FROM bods.orch_ppe_pl_trans_current  t 
+    LEFT OUTER JOIN a 
+      ON t.BAR_ACCT = a.bar_account 
+    LEFT OUTER JOIN b 
+      ON t.BAR_ENTITY = b.bar_entity
+    LEFT OUTER JOIN hfm 
+      ON t.bar_year = hfm.bar_year 
+     AND t.bar_period = hfm.bar_period 
+     AND hfm.bar_function = b.bar_entity_currency
 )		

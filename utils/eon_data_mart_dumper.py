@@ -53,14 +53,15 @@ def dump_crt_models(crt_source_file, crt_model_output_location=None):
         logger.info("%s start    %s" %(time.strftime("%Y%m%dT%T"),processStageName))
         ddl_statements = re.sub(r'--.*', '', ddl_statements)    # Comment Remover
         ddl_statements = re.sub(r'ENCODE (lzo|az64|raw|bytedict|delta|delta32K|mostly8|mostly16|mostly32|runlength|text255|text32K|zstd)',
-                                '', ddl_statements, flags=re.IGNORECASE)  # Redshift Encode Replacement
-        ddl_statements = re.sub(r'DISTSTYLE (\w|\t|\n|\(|\)|\s|,)*;\nALTER TABLE .*;', '', ddl_statements) # DISTTYLE Replacement
+                            '', ddl_statements, flags=re.IGNORECASE)  # Redshift Encode Replacement
+        ddl_statements = re.sub(r'DISTSTYLE (\w|\t|\n|\(|\)| |\.)*;', '', ddl_statements) # DISTTYLE Replacement
+        ddl_statements = re.sub(r'ALTER TABLE (\w|\t|\n|\(|\)|\s|,|\.)*;', '', ddl_statements) # ALTER TABLE Replacement
         logger.info("%s complete %s" %(time.strftime("%Y%m%dT%T"),processStageName))
 
-        # Extract the CREATE TABLE IF NOT EXISTS <table_name>.
-        processStageName="Extract the CREATE TABLE IF NOT EXISTS <table_name>."
+        # Extract the CREATE TABLE IF NOT EXISTS <table_name> or CREATE TABLE <table_name>
+        processStageName="Extract the CREATE TABLE IF NOT EXISTS <table_name> or CREATE TABLE <table_name>"
         logger.info("%s start    %s" %(time.strftime("%Y%m%dT%T"),processStageName))
-        create_table_statements = re.findall(r"CREATE TABLE.*", ddl_statements)
+        create_table_statements = re.findall(r"CREATE TABLE (?:\w|\d|\.| )*", ddl_statements)
         logger.debug("Print create table stmnt: \n%s"%(create_table_statements))
         logger.info("%s complete %s" %(time.strftime("%Y%m%dT%T"),processStageName))
        
@@ -68,51 +69,51 @@ def dump_crt_models(crt_source_file, crt_model_output_location=None):
         # Extract the <table_name> without the source system prefix.
         processStageName="Extract the <table_name> without the source system prefix."
         logger.info("%s start    %s" %(time.strftime("%Y%m%dT%T"),processStageName))
-        table_names = [table_name.split('CREATE TABLE')[1][1:] for table_name in create_table_statements]
-        table_names = [table_name.replace('.', '_') for table_name in table_names]
+        table_group = [table.split('CREATE TABLE ') for table in create_table_statements]
+        table_names = [table_name[1] for table_name in table_group]
+        table_names = [table_name.replace('.', '_').replace('IF NOT EXISTS ', '') for table_name in table_names]
         logger.debug("Print table names: \n%s"%(table_names))
         logger.info("%s complete %s" %(time.strftime("%Y%m%dT%T"),processStageName))
         
 
-        # Extract the definition of the table.
-        processStageName="Extract the definition of the table."
+        # Extract the compete CREATE TABLE [IF NOT EXISTS] <table_name> (<table definition>)
+        processStageName="Extract the compete CREATE TABLE [IF NOT EXISTS] <table_name> (<table definition>)"
         logger.info("%s start    %s" %(time.strftime("%Y%m%dT%T"),processStageName))
-        table_definitions = re.split(r"CREATE TABLE.*", ddl_statements)[1:]
-        assert len(create_table_statements) == len(table_definitions) == len(table_names), \
-            "Lists are not the same length"
+        complete_extract = re.findall(r'CREATE TABLE (?:\w|\s|\.|\n|\(|,|(?<=\d)\)|\"|(?<=\w)\))+\)', ddl_statements)
+        complete_extract = [table_ddl.replace('"', '') for table_ddl in complete_extract]   # Remove quotes around column names
+        assert len(complete_extract) == len(table_names), "Lists are not the same length"
         logger.info("%s complete %s" %(time.strftime("%Y%m%dT%T"),processStageName))
         
         # Use the extracts to format the file contents and write to the file.
         processStageName="Use the extracts to format the file contents and write to the file."
         logger.info("%s start    %s" %(time.strftime("%Y%m%dT%T"),processStageName))
-        for create, definition, file_name in zip(create_table_statements, table_definitions, table_names):
-            table_definition = f'{create}{definition}'.strip()
-
+        for table_ddl, table_name in zip(complete_extract, table_names):
             file_body = '{{% set table_metadata = {{ \n\t ' \
                         '"table_definition":" \n\t\t' \
                         '{} \n\t' \
                         '"\n' \
                         '}}%}} \n\n' \
                         '{{{{ config(materialized = "ephemeral") }}}}\n' \
-                        '{{% do run_query(table_metadata.table_definition) %}}'.format(table_definition)
+                        '{{% do run_query(table_metadata.table_definition) %}}'.format(table_ddl)
 
             ## check if the crt_model_output_location is provided from user/calling program. otherwise, use default which is Current working directory
             if crt_model_output_location is None:
                 crt_model_output_location = os.getcwd()
                 logger.info("Using default output directory as  %s"%(crt_model_output_location))
+            
             os.chdir(crt_model_output_location)
-            file = open(f'crt_{file_name}.sql', 'w')
+            file = open(f'crt_{table_name}.sql', 'w')
             file.write(file_body)
             file.close()
             logger.info("%s complete %s" %(time.strftime("%Y%m%dT%T"),processStageName))
-            return
     except Exception as error_message:
         errorMessage="%s Error during %s stage while calling the EON_DATA_MART_DUMPER.dump_crt_models(%s) function with rootCause: %s " % (time.strftime("%Y%m%dT%T"), processStageName,crt_source_file,str(error_message))
         print(
             'Exception occured with message: {0}'.format(error_message)) ## log Message to console incase logger is not available on system
         logger.error(errorMessage) ## log the formatted error message
         raise Exception(errorMessage)  ## throw the exception with appropriate message to caller program/method
-
+    else: 
+        return
 
     
 

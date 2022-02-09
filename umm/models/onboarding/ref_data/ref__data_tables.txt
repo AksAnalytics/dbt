@@ -1,0 +1,344 @@
+CREATE SCHEMA ref_data;
+
+CREATE TABLE ref_data.agm_bnr_financials_extract ( 
+	scenario             varchar(50)    ENCODE lzo,
+	brand                varchar(50)    ENCODE lzo,
+	customer             varchar(50)    ENCODE lzo,
+	shipto_geography     varchar(50)    ENCODE lzo,
+	func                 varchar(50)    ENCODE lzo,
+	entity               varchar(50)    ENCODE lzo,
+	product              varchar(50)    ENCODE lzo,
+	fiscal_month_id      integer  NOT NULL  ENCODE az64,
+	account              varchar(50)    ENCODE lzo,
+	amt_local_cur        decimal(25,9)    ENCODE az64,
+	amt_reported         decimal(25,9)    ENCODE az64
+ )   DISTSTYLE AUTO;
+
+CREATE TABLE ref_data.calendar ( 
+	dy_id                integer    ENCODE az64,
+	dy_dte               timestamp    ENCODE az64,
+	absolute_dy_nbr      integer    ENCODE az64,
+	absolute_wk_nbr      integer    ENCODE az64,
+	absolute_mth_nbr     integer    ENCODE az64,
+	absolute_qtr_nbr     integer    ENCODE az64,
+	dy_in_wk_nbr         integer    ENCODE az64,
+	dy_in_wk_name        varchar(200)    ENCODE lzo,
+	julian_dy_nbr        integer    ENCODE az64,
+	clndr_wk_nbr         varchar(200)    ENCODE lzo,
+	clndr_wk_id          varchar(200)    ENCODE lzo,
+	clndr_mth_nbr        integer    ENCODE az64,
+	clndr_mth_id         varchar(200)    ENCODE lzo,
+	clndr_mth_name       varchar(200)    ENCODE lzo,
+	clndr_qtr_nbr        integer    ENCODE az64,
+	clndr_qtr_id         varchar(200)    ENCODE lzo,
+	clndr_qtr_name       varchar(200)    ENCODE lzo,
+	clndr_yr_id          integer    ENCODE az64,
+	clndr_dy_in_mth_nbr  integer    ENCODE az64,
+	is_first_dy_in_clndr_mth_flag varchar(1)    ENCODE lzo,
+	is_last_dy_in_clndr_mth_flag varchar(1)    ENCODE lzo,
+	wk_begin_dte         timestamp    ENCODE az64,
+	wk_end_dte           timestamp    ENCODE az64,
+	fmth_begin_dte       timestamp    ENCODE az64,
+	fmth_end_dte         timestamp    ENCODE az64,
+	fqtr_begin_dte       timestamp    ENCODE az64,
+	fqtr_end_dte         timestamp    ENCODE az64,
+	fyr_begin_dte        timestamp    ENCODE az64,
+	fyr_end_dte          timestamp    ENCODE az64,
+	fwk_nbr              integer    ENCODE az64,
+	fwk_id               integer    ENCODE az64,
+	fwk_cd               varchar(200)    ENCODE lzo,
+	fmth_nbr             integer    ENCODE az64,
+	fmth_id              integer    ENCODE az64,
+	fmth_cd              varchar(200)    ENCODE lzo,
+	fmth_name            varchar(200)    ENCODE lzo,
+	fmth_short_name      varchar(200)    ENCODE lzo,
+	fqtr_nbr             integer    ENCODE az64,
+	fqtr_id              integer    ENCODE az64,
+	fqtr_cd              varchar(200)    ENCODE lzo,
+	fqtr_name            varchar(200)    ENCODE lzo,
+	fyr_id               integer    ENCODE az64,
+	fdy_in_mth_nbr       integer    ENCODE az64,
+	fscl_days_remaining_in_mth integer    ENCODE az64,
+	fdy_in_qtr_nbr       integer    ENCODE az64,
+	fscl_days_remaining_in_qtr integer    ENCODE az64,
+	fdy_in_yr_nbr        integer    ENCODE az64,
+	fscl_days_remaining_in_yr integer    ENCODE az64,
+	fwk_in_mth_nbr       integer    ENCODE az64,
+	fwk_in_qtr           integer    ENCODE az64,
+	is_wk_dy_flag        varchar(1)    ENCODE lzo,
+	is_weekend_flag      varchar(1)    ENCODE lzo,
+	is_first_dy_of_fwk_flag varchar(1)    ENCODE lzo,
+	is_last_dy_of_fwk_flag varchar(1)    ENCODE lzo,
+	is_first_dy_of_fmth_flag varchar(1)    ENCODE lzo,
+	is_last_dy_of_fmth_flag varchar(1)    ENCODE lzo,
+	is_first_dy_of_fqtr_flag varchar(1)    ENCODE lzo,
+	is_last_dy_of_fqtr_flag varchar(1)    ENCODE lzo,
+	is_first_dy_of_fyr_flag varchar(1)    ENCODE lzo,
+	is_last_dy_of_fyr_flag varchar(1)    ENCODE lzo,
+	season_name          varchar(200)    ENCODE lzo,
+	holiday_name         varchar(200)    ENCODE lzo,
+	holiday_season_name  varchar(200)    ENCODE lzo,
+	holiday_observed_name varchar(200)    ENCODE lzo,
+	special_event_name   varchar(200)    ENCODE lzo,
+	etl_batch_id         varchar(200)    ENCODE lzo,
+	original_filename    varchar(200)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.customer_commercial_hierarchy ( 
+	base_customer        varchar(50)  NOT NULL  ENCODE lzo,
+	major_customer       varchar(50)    ENCODE lzo,
+	market               varchar(50)    ENCODE lzo,
+	channel              varchar(50)    ENCODE lzo,
+	segment              varchar(50)    ENCODE lzo,
+	total_customer       varchar(50)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.data_processing_rule ( 
+	data_processing_ruleid integer  NOT NULL  ENCODE az64,
+	soldtoflag           varchar(1)    ENCODE lzo,
+	skuflag              varchar(1)    ENCODE lzo,
+	barcustflag          varchar(1)    ENCODE lzo,
+	barproductflag       varchar(1)    ENCODE lzo,
+	barbrandflag         varchar(1)    ENCODE lzo,
+	bar_acct             varchar(10)    ENCODE lzo,
+	data_source          varchar(10)    ENCODE lzo,
+	dataprocessing_group varchar(200)    ENCODE lzo,
+	dataprocessing_rule_description varchar(400)    ENCODE lzo,
+	dataprocessing_rule_steps varchar(500)    ENCODE lzo,
+	dataprocessing_hash  varchar(40)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.data_processing_rule_agm ( 
+	data_processing_ruleid integer  NOT NULL  ENCODE az64,
+	bar_acct_category    varchar(100)    ENCODE lzo,
+	dataprocessing_group varchar(200)    ENCODE lzo,
+	dataprocessing_rule_description varchar(400)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.demand_group_to_bar_customer_mapping ( 
+	demand_group         varchar(30)    ENCODE lzo,
+	bar_customer         varchar(30)    ENCODE lzo
+ )   DISTSTYLE AUTO;
+
+CREATE TABLE ref_data.entity ( 
+	name                 varchar(20)    ENCODE lzo,
+	description          varchar(200)    ENCODE lzo,
+	level4               varchar(100)    ENCODE lzo,
+	level5               varchar(30)    ENCODE lzo,
+	level6               varchar(30)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.entity_to_plant_to_division_to_ssbu_mapping ( 
+	plant_var_reg_pct    varchar(30)    ENCODE lzo,
+	raw_product          varchar(75)    ENCODE lzo,
+	description          varchar(100)    ENCODE lzo,
+	region               varchar(30)    ENCODE lzo,
+	division             varchar(30)    ENCODE lzo,
+	entity               varchar(10)    ENCODE lzo,
+	super_sbu            varchar(30)    ENCODE lzo,
+	jan                  decimal(8,4)    ENCODE az64,
+	feb                  decimal(8,4)    ENCODE az64,
+	mar                  decimal(8,4)    ENCODE az64,
+	apr                  decimal(8,4)    ENCODE az64,
+	may                  decimal(8,4)    ENCODE az64,
+	jun                  decimal(8,4)    ENCODE az64,
+	jul                  decimal(8,4)    ENCODE az64,
+	aug                  decimal(8,4)    ENCODE az64,
+	sep                  decimal(8,4)    ENCODE az64,
+	oct                  decimal(8,4)    ENCODE az64,
+	nov                  decimal(8,4)    ENCODE az64,
+	"dec"                decimal(8,4)    ENCODE az64
+ )   DISTSTYLE AUTO;
+
+CREATE TABLE ref_data.fob_soldto_barcust_mapping ( 
+	soldtocust           varchar(20)  NOT NULL  ENCODE lzo,
+	bar_custno           varchar(30)  NOT NULL  ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.hfmfxrates_current ( 
+	id                   integer DEFAULT "identity" NOT NULL  ENCODE az64,
+	fiscal_month_begin_date date    ENCODE az64,
+	bar_year             integer    ENCODE az64,
+	bar_period           varchar(3)    ENCODE lzo,
+	fiscal_month_id      integer    ENCODE az64,
+	fxrate               decimal(38,10)    ENCODE az64,
+	from_currtype        varchar(10)    ENCODE lzo,
+	to_currtype          varchar(10)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.parent_product_hierarchy_allocation_mapping ( 
+	member_type          varchar(10)    ENCODE lzo,
+	name                 varchar(50)    ENCODE lzo,
+	superior1            varchar(50)    ENCODE lzo,
+	superior2            varchar(50)    ENCODE lzo,
+	superior3            varchar(50)    ENCODE lzo,
+	start_date           date    ENCODE az64,
+	end_date             date    ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.pnl_acct ( 
+	bar_acct             varchar(10)  NOT NULL  ENCODE lzo,
+	bar_acct_desc        varchar(100)    ENCODE lzo,
+	acct_type            varchar(20)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.pnl_acct_agm ( 
+	acct_category        varchar(40)    ENCODE lzo,
+	bar_acct             varchar(10)  NOT NULL  ENCODE lzo,
+	bar_acct_desc        varchar(100)    ENCODE lzo,
+	acct_type            varchar(10)    ENCODE lzo,
+	multiplication_factor integer    ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.product_commercial_hierarchy ( 
+	gpp_portfolio        varchar(50)  NOT NULL  ENCODE lzo,
+	gts                  varchar(50)    ENCODE lzo,
+	super_bu             varchar(50)    ENCODE lzo,
+	subcategory          varchar(50)    ENCODE lzo,
+	category             varchar(50)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.product_hierarchy_allocation_mapping ( 
+	allocation_mapping_key integer DEFAULT "identity"   ENCODE az64,
+	membertype           varchar(10)    ENCODE lzo,
+	name                 varchar(200)    ENCODE lzo,
+	superior1            varchar(200)    ENCODE lzo,
+	superior2            varchar(200)    ENCODE lzo,
+	superior3            varchar(200)    ENCODE lzo,
+	description          varchar(400)    ENCODE lzo,
+	plnlevel             varchar(20)    ENCODE lzo,
+	generation           integer    ENCODE az64,
+	start_date           date    ENCODE az64,
+	end_date             date    ENCODE az64
+ )   DISTSTYLE AUTO;
+
+CREATE TABLE ref_data.ptg_accruals ( 
+	gl_acct              varchar(50)  NOT NULL  ENCODE lzo,
+	amt                  decimal(19,8)  NOT NULL  ENCODE az64,
+	amt_usd              decimal(19,8)  NOT NULL  ENCODE az64,
+	currkey              varchar(10)  NOT NULL  ENCODE lzo,
+	fiscal_month_id      integer  NOT NULL  ENCODE az64,
+	posting_week_enddate date  NOT NULL  ENCODE lzo,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.rsa_bible ( 
+	source_system        varchar(50)    ENCODE lzo,
+	demand_group         varchar(30)    ENCODE lzo,
+	division             varchar(30)    ENCODE lzo,
+	brand                varchar(30)    ENCODE lzo,
+	sku                  varchar(30)    ENCODE lzo,
+	fiscal_month_id      integer    ENCODE az64,
+	amt                  decimal(38,8)    ENCODE az64,
+	amt_str              varchar(30)    ENCODE lzo,
+	pcr                  varchar(300)    ENCODE lzo,
+	mgsv                 varchar(30)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.sku_barbrand_mapping ( 
+	material             varchar(30)  NOT NULL  ENCODE lzo,
+	bar_brand            varchar(22)  NOT NULL  ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	current_flag         smallint  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.sku_barbrand_mapping_sgm ( 
+	ss_fiscal_month_id   integer    ENCODE az64,
+	material             varchar(30)  NOT NULL  ENCODE lzo,
+	bar_brand            varchar(22)  NOT NULL  ENCODE lzo,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.sku_barproduct_mapping ( 
+	material             varchar(30)  NOT NULL  ENCODE lzo,
+	bar_product          varchar(22)  NOT NULL  ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	current_flag         smallint  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.sku_barproduct_mapping_c11_bods ( 
+	material             varchar(30)  NOT NULL  ENCODE lzo,
+	bar_product          varchar(22)  NOT NULL  ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	current_flag         smallint  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.sku_barproduct_mapping_lawson_bods ( 
+	material             varchar(30)  NOT NULL  ENCODE lzo,
+	bar_product          varchar(22)  NOT NULL  ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	current_flag         smallint  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.sku_barproduct_mapping_p10_bods ( 
+	material             varchar(30)  NOT NULL  ENCODE lzo,
+	bar_product          varchar(22)  NOT NULL  ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	current_flag         smallint  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.sku_brand_mapping_masterdata ( 
+	material             varchar(50)  NOT NULL  ENCODE lzo,
+	brand_code           varchar(50)  NOT NULL  ENCODE lzo,
+	brand_map            varchar(50)  NOT NULL  ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.sku_gpp_mapping ( 
+	material             varchar(30)  NOT NULL  ENCODE lzo,
+	gpp_portfolio        varchar(10)  NOT NULL  ENCODE lzo,
+	gpp_division         varchar(2)  NOT NULL  ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	current_flag         smallint  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.sku_gpp_mapping_sgm ( 
+	ss_fiscal_month_id   integer    ENCODE az64,
+	material             varchar(50)  NOT NULL  ENCODE lzo,
+	gpp_portfolio        varchar(50)  NOT NULL  ENCODE lzo,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.soldto_barcust_mapping ( 
+	soldtocust           varchar(10)  NOT NULL  ENCODE lzo,
+	bar_custno           varchar(20)  NOT NULL  ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	current_flag         smallint  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.soldto_shipto_barcust_mapping ( 
+	soldtocust           varchar(50)  NOT NULL  ENCODE lzo,
+	shiptocust           varchar(50)  NOT NULL  ENCODE lzo,
+	bar_custno           varchar(50)  NOT NULL  ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	current_flag         smallint  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.umm_closedate_config ( 
+	rownumber            bigint    ENCODE az64,
+	fiscal_month_id      integer    ENCODE az64,
+	fiscal_close_date    timestamp    ENCODE az64,
+	fiscal_month_enddate timestamp    ENCODE az64,
+	fiscal_wklyjob_start_date timestamp    ENCODE az64,
+	finance_close_date   timestamp    ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE ref_data.volume_conv_sku ( 
+	sku                  varchar(10)    ENCODE lzo,
+	conversionrate       decimal(19,2)    ENCODE az64
+ )   DISTSTYLE ALL;

@@ -1,0 +1,1262 @@
+version: 2
+
+sources:
+  - name: sftpgtsi
+    database: dev_raw
+    tables:
+      - name: baractuals
+        columns:
+          - name: scenario
+            description: ""
+          - name: brand
+            description: ""
+          - name: customer
+            description: ""
+          - name: ship_to_geography
+            description: ""
+          - name: function1
+            description: ""
+          - name: entity
+            description: ""
+          - name: product
+            description: ""
+          - name: years
+            description: ""
+          - name: period
+            description: ""
+          - name: account
+            description: ""
+          - name: localcur
+            description: ""
+          - name: reported
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: baractuals_changes
+        columns:
+          - name: scenario
+            description: ""
+          - name: brand
+            description: ""
+          - name: customer
+            description: ""
+          - name: ship_to_geography
+            description: ""
+          - name: function1
+            description: ""
+          - name: entity
+            description: ""
+          - name: product
+            description: ""
+          - name: years
+            description: ""
+          - name: period
+            description: ""
+          - name: account
+            description: ""
+          - name: localcur
+            description: ""
+          - name: reported
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+          - name: caspian_changeindicator_operation
+            description: ""
+          - name: caspian_changeindicator_code
+            description: ""
+
+      - name: baractuals_history
+        columns:
+          - name: scenario
+            description: ""
+          - name: brand
+            description: ""
+          - name: customer
+            description: ""
+          - name: ship_to_geography
+            description: ""
+          - name: function1
+            description: ""
+          - name: entity
+            description: ""
+          - name: product
+            description: ""
+          - name: years
+            description: ""
+          - name: period
+            description: ""
+          - name: account
+            description: ""
+          - name: localcur
+            description: ""
+          - name: reported
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: baractuals_landing
+        columns:
+          - name: scenario
+            description: ""
+          - name: brand
+            description: ""
+          - name: customer
+            description: ""
+          - name: ship_to_geography
+            description: ""
+          - name: function1
+            description: ""
+          - name: entity
+            description: ""
+          - name: product
+            description: ""
+          - name: years
+            description: ""
+          - name: period
+            description: ""
+          - name: account
+            description: ""
+          - name: localcur
+            description: ""
+          - name: reported
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+
+      - name: baractuals_landing_copy
+        columns:
+          - name: col
+            description: ""
+          - name: filename
+            description: ""
+          - name: file_row_number
+            description: ""
+          - name: loaddts
+            description: ""
+
+      - name: baractuals_quarantine
+        columns:
+          - name: scenario
+            description: ""
+          - name: brand
+            description: ""
+          - name: customer
+            description: ""
+          - name: ship_to_geography
+            description: ""
+          - name: function1
+            description: ""
+          - name: entity
+            description: ""
+          - name: product
+            description: ""
+          - name: years
+            description: ""
+          - name: period
+            description: ""
+          - name: account
+            description: ""
+          - name: localcur
+            description: ""
+          - name: reported
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: failed_test
+            description: ""
+
+      - name: baractuals_validated
+        columns:
+          - name: scenario
+            description: ""
+          - name: brand
+            description: ""
+          - name: customer
+            description: ""
+          - name: ship_to_geography
+            description: ""
+          - name: function1
+            description: ""
+          - name: entity
+            description: ""
+          - name: product
+            description: ""
+          - name: years
+            description: ""
+          - name: period
+            description: ""
+          - name: account
+            description: ""
+          - name: localcur
+            description: ""
+          - name: reported
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: mngmntrpt
+        columns:
+          - name: basecustomer
+            description: ""
+          - name: majorcustomer
+            description: ""
+          - name: market
+            description: ""
+          - name: channel
+            description: ""
+          - name: segment
+            description: ""
+          - name: totalcustomer
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: mngmntrpt_changes
+        columns:
+          - name: basecustomer
+            description: ""
+          - name: majorcustomer
+            description: ""
+          - name: market
+            description: ""
+          - name: channel
+            description: ""
+          - name: segment
+            description: ""
+          - name: totalcustomer
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+          - name: caspian_changeindicator_operation
+            description: ""
+          - name: caspian_changeindicator_code
+            description: ""
+
+      - name: mngmntrpt_history
+        columns:
+          - name: basecustomer
+            description: ""
+          - name: majorcustomer
+            description: ""
+          - name: market
+            description: ""
+          - name: channel
+            description: ""
+          - name: segment
+            description: ""
+          - name: totalcustomer
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: mngmntrpt_landing
+        columns:
+          - name: basecustomer
+            description: ""
+          - name: majorcustomer
+            description: ""
+          - name: market
+            description: ""
+          - name: channel
+            description: ""
+          - name: segment
+            description: ""
+          - name: totalcustomer
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+
+      - name: mngmntrpt_landing_copy
+        columns:
+          - name: col
+            description: ""
+          - name: filename
+            description: ""
+          - name: file_row_number
+            description: ""
+          - name: loaddts
+            description: ""
+
+      - name: mngmntrpt_quarantine
+        columns:
+          - name: basecustomer
+            description: ""
+          - name: majorcustomer
+            description: ""
+          - name: market
+            description: ""
+          - name: channel
+            description: ""
+          - name: segment
+            description: ""
+          - name: totalcustomer
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: failed_test
+            description: ""
+
+      - name: mngmntrpt_validated
+        columns:
+          - name: basecustomer
+            description: ""
+          - name: majorcustomer
+            description: ""
+          - name: market
+            description: ""
+          - name: channel
+            description: ""
+          - name: segment
+            description: ""
+          - name: totalcustomer
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: prodcommhier
+        columns:
+          - name: gppport
+            description: ""
+          - name: gts
+            description: ""
+          - name: superbu
+            description: ""
+          - name: subcat
+            description: ""
+          - name: category
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: prodcommhier_changes
+        columns:
+          - name: gppport
+            description: ""
+          - name: gts
+            description: ""
+          - name: superbu
+            description: ""
+          - name: subcat
+            description: ""
+          - name: category
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+          - name: caspian_changeindicator_operation
+            description: ""
+          - name: caspian_changeindicator_code
+            description: ""
+
+      - name: prodcommhier_history
+        columns:
+          - name: gppport
+            description: ""
+          - name: gts
+            description: ""
+          - name: superbu
+            description: ""
+          - name: subcat
+            description: ""
+          - name: category
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: prodcommhier_landing
+        columns:
+          - name: gppport
+            description: ""
+          - name: gts
+            description: ""
+          - name: superbu
+            description: ""
+          - name: subcat
+            description: ""
+          - name: category
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+
+      - name: prodcommhier_landing_copy
+        columns:
+          - name: col
+            description: ""
+          - name: filename
+            description: ""
+          - name: file_row_number
+            description: ""
+          - name: loaddts
+            description: ""
+
+      - name: prodcommhier_quarantine
+        columns:
+          - name: gppport
+            description: ""
+          - name: gts
+            description: ""
+          - name: superbu
+            description: ""
+          - name: subcat
+            description: ""
+          - name: category
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: failed_test
+            description: ""
+
+      - name: prodcommhier_validated
+        columns:
+          - name: gppport
+            description: ""
+          - name: gts
+            description: ""
+          - name: superbu
+            description: ""
+          - name: subcat
+            description: ""
+          - name: category
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: rsabible_landing
+        columns:
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+
+      - name: rsabible_landing_copy
+        columns:
+          - name: col
+            description: ""
+          - name: filename
+            description: ""
+          - name: file_row_number
+            description: ""
+          - name: loaddts
+            description: ""
+
+      - name: rsabible_quarantine
+        columns:
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: failed_test
+            description: ""
+
+      - name: rsabiblecad
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: rsabiblecad_changes
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+          - name: caspian_changeindicator_operation
+            description: ""
+          - name: caspian_changeindicator_code
+            description: ""
+
+      - name: rsabiblecad_history
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: rsabiblecad_landing
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+
+      - name: rsabiblecad_landing_copy
+        columns:
+          - name: col
+            description: ""
+          - name: filename
+            description: ""
+          - name: file_row_number
+            description: ""
+          - name: loaddts
+            description: ""
+
+      - name: rsabiblecad_quarantine
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: failed_test
+            description: ""
+
+      - name: rsabiblecad_validated
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: rsabibleus
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: rsabibleus_changes
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+          - name: caspian_changeindicator_operation
+            description: ""
+          - name: caspian_changeindicator_code
+            description: ""
+
+      - name: rsabibleus_history
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: rsabibleus_landing
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+
+      - name: rsabibleus_landing_copy
+        columns:
+          - name: col
+            description: ""
+          - name: filename
+            description: ""
+          - name: file_row_number
+            description: ""
+          - name: loaddts
+            description: ""
+
+      - name: rsabibleus_quarantine
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: failed_test
+            description: ""
+
+      - name: rsabibleus_validated
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: vw_baractuals
+        columns:
+          - name: scenario
+            description: ""
+          - name: brand
+            description: ""
+          - name: customer
+            description: ""
+          - name: ship_to_geography
+            description: ""
+          - name: function1
+            description: ""
+          - name: entity
+            description: ""
+          - name: product
+            description: ""
+          - name: years
+            description: ""
+          - name: period
+            description: ""
+          - name: account
+            description: ""
+          - name: localcur
+            description: ""
+          - name: reported
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: vw_mngmntrpt
+        columns:
+          - name: basecustomer
+            description: ""
+          - name: majorcustomer
+            description: ""
+          - name: market
+            description: ""
+          - name: channel
+            description: ""
+          - name: segment
+            description: ""
+          - name: totalcustomer
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: vw_prodcommhier
+        columns:
+          - name: gppport
+            description: ""
+          - name: gts
+            description: ""
+          - name: superbu
+            description: ""
+          - name: subcat
+            description: ""
+          - name: category
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: vw_rsabiblecad
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""
+
+      - name: vw_rsabibleus
+        columns:
+          - name: id
+            description: ""
+          - name: region
+            description: ""
+          - name: demandgroup
+            description: ""
+          - name: customer
+            description: ""
+          - name: division
+            description: ""
+          - name: brand
+            description: ""
+          - name: sku
+            description: ""
+          - name: year
+            description: ""
+          - name: period
+            description: ""
+          - name: rsa_amt
+            description: ""
+          - name: pcr
+            description: ""
+          - name: mgsv
+            description: ""
+          - name: loaddts
+            description: ""
+          - name: eventdts
+            description: ""
+          - name: rec_src
+            description: ""
+          - name: row_sqn
+            description: ""
+          - name: hash_full_record
+            description: ""

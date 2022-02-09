@@ -1,1036 +1,483 @@
--- global_pl.bar_acct_attr definition
-
--- Drop table
-
--- DROP TABLE global_pl.bar_acct_attr;
-
---DROP TABLE global_pl.bar_acct_attr;
-CREATE TABLE IF NOT EXISTS global_pl.bar_acct_attr
-(
-	bar_account VARCHAR(250) NOT NULL  ENCODE lzo
-	,bar_account_desc VARCHAR(250)   ENCODE lzo
-	,bar_acct_type_lvl1 VARCHAR(250)   ENCODE lzo
-	,bar_acct_type_lvl2 VARCHAR(250)   ENCODE lzo
-	,bar_acct_type_lvl3 VARCHAR(250)   ENCODE lzo
-	,bar_acct_type_lvl4 VARCHAR(250)   ENCODE lzo
-	,indirect_flag VARCHAR(250)   ENCODE lzo
-	,flipsign VARCHAR(250)   ENCODE lzo
-	,etl_crte_user VARCHAR(100)   ENCODE lzo
-	,etl_crte_ts DATE   ENCODE az64
-	,etl_updt_user VARCHAR(100)   ENCODE lzo
-	,etl_updt_ts DATE   ENCODE az64
-	,PRIMARY KEY (bar_account)
-)
-DISTSTYLE ALL
-;
-ALTER TABLE global_pl.bar_acct_attr owner to hcloperators;
-
-
--- global_pl.bar_customer_attr definition
-
--- Drop table
-
--- DROP TABLE global_pl.bar_customer_attr;
-
---DROP TABLE global_pl.bar_customer_attr;
-CREATE TABLE IF NOT EXISTS global_pl.bar_customer_attr
-(
-	bar_customer VARCHAR(250) NOT NULL  ENCODE lzo
-	,bar_customer_desc VARCHAR(250)   ENCODE lzo
-	,bar_customer_lvl1 VARCHAR(250)   ENCODE lzo
-	,bar_customer_lvl2 VARCHAR(250)   ENCODE lzo
-	,bar_customer_lvl3 VARCHAR(250)   ENCODE lzo
-	,bar_customer_lvl4 VARCHAR(250)   ENCODE lzo
-	,etl_crte_user VARCHAR(100)   ENCODE lzo
-	,etl_crte_ts DATE   ENCODE az64
-	,etl_updt_user VARCHAR(100)   ENCODE lzo
-	,etl_updt_ts DATE   ENCODE az64
-	,PRIMARY KEY (bar_customer)
-)
-DISTSTYLE ALL
-;
-ALTER TABLE global_pl.bar_customer_attr owner to hcloperators;
-
-
--- global_pl.bar_entity_attr definition
-
--- Drop table
-
--- DROP TABLE global_pl.bar_entity_attr;
-
---DROP TABLE global_pl.bar_entity_attr;
-CREATE TABLE IF NOT EXISTS global_pl.bar_entity_attr
-(
-	bar_entity VARCHAR(250) NOT NULL  ENCODE lzo
-	,bar_entity_desc VARCHAR(250)   ENCODE lzo
-	,bar_entity_currency VARCHAR(250)   ENCODE lzo
-	,bar_entity_lvl1 VARCHAR(250)   ENCODE lzo
-	,bar_entity_lvl2 VARCHAR(250)   ENCODE lzo
-	,bar_entity_lvl3 VARCHAR(250)   ENCODE lzo
-	,bar_entity_lvl4 VARCHAR(250)   ENCODE lzo
-	,bar_entity_region VARCHAR(250)   ENCODE lzo
-	,etl_crte_user VARCHAR(100)   ENCODE lzo
-	,etl_crte_ts DATE   ENCODE az64
-	,etl_updt_user VARCHAR(100)   ENCODE lzo
-	,etl_updt_ts DATE   ENCODE az64
-	,PRIMARY KEY (bar_entity)
-)
-DISTSTYLE ALL
-;
-ALTER TABLE global_pl.bar_entity_attr owner to hcloperators;
-
-
--- global_pl.bar_entity_attr_temp definition
-
--- Drop table
-
--- DROP TABLE global_pl.bar_entity_attr_temp;
-
---DROP TABLE global_pl.bar_entity_attr_temp;
-CREATE TABLE IF NOT EXISTS global_pl.bar_entity_attr_temp
-(
-	bar_entity VARCHAR(250)   ENCODE lzo
-	,bar_entity_desc VARCHAR(250)   ENCODE lzo
-	,bar_entity_currency VARCHAR(250)   ENCODE lzo
-	,bar_entity_lvl1 VARCHAR(250)   ENCODE lzo
-	,bar_entity_lvl2 VARCHAR(250)   ENCODE lzo
-	,bar_entity_lvl3 VARCHAR(250)   ENCODE lzo
-	,bar_entity_lvl4 VARCHAR(250)   ENCODE lzo
-	,bar_entity_region VARCHAR(250)   ENCODE lzo
-	,etl_crte_user VARCHAR(100)   ENCODE lzo
-	,etl_crte_ts DATE   ENCODE az64
-	,etl_updt_user VARCHAR(100)   ENCODE lzo
-	,etl_updt_ts DATE   ENCODE az64
-)
-DISTSTYLE EVEN
-;
-ALTER TABLE global_pl.bar_entity_attr_temp owner to base_admin;
-
-
--- global_pl.bar_funct_attr definition
-
--- Drop table
-
--- DROP TABLE global_pl.bar_funct_attr;
-
---DROP TABLE global_pl.bar_funct_attr;
-CREATE TABLE IF NOT EXISTS global_pl.bar_funct_attr
-(
-	bar_function VARCHAR(250) NOT NULL  ENCODE lzo
-	,bar_function_grp VARCHAR(250)   ENCODE lzo
-	,functiontype VARCHAR(250)   ENCODE lzo
-	,etl_crte_user VARCHAR(100)   ENCODE lzo
-	,etl_crte_ts DATE   ENCODE az64
-	,etl_updt_user VARCHAR(100)   ENCODE lzo
-	,etl_updt_ts DATE   ENCODE az64
-	,PRIMARY KEY (bar_function)
-)
-DISTSTYLE ALL
-;
-ALTER TABLE global_pl.bar_funct_attr owner to hcloperators;
-
-
--- global_pl.bar_product_attr definition
-
--- Drop table
-
--- DROP TABLE global_pl.bar_product_attr;
-
---DROP TABLE global_pl.bar_product_attr;
-CREATE TABLE IF NOT EXISTS global_pl.bar_product_attr
-(
-	bar_product VARCHAR(250) NOT NULL  ENCODE lzo
-	,bar_product_desc VARCHAR(250)   ENCODE lzo
-	,bar_product_lvl1 VARCHAR(250)   ENCODE lzo
-	,bar_product_lvl2 VARCHAR(250)   ENCODE lzo
-	,bar_product_lvl3 VARCHAR(250)   ENCODE lzo
-	,bar_product_lvl4 VARCHAR(250)   ENCODE lzo
-	,bar_product_lvl5 VARCHAR(250)   ENCODE lzo
-	,etl_crte_user VARCHAR(100)   ENCODE lzo
-	,etl_crte_ts DATE   ENCODE az64
-	,etl_updt_user VARCHAR(100)   ENCODE lzo
-	,etl_updt_ts DATE   ENCODE az64
-	,PRIMARY KEY (bar_product)
-)
-DISTSTYLE ALL
-;
-ALTER TABLE global_pl.bar_product_attr owner to hcloperators;
-
-
--- global_pl.bar_product_attr_temp definition
-
--- Drop table
-
--- DROP TABLE global_pl.bar_product_attr_temp;
-
---DROP TABLE global_pl.bar_product_attr_temp;
-CREATE TABLE IF NOT EXISTS global_pl.bar_product_attr_temp
-(
-	bar_product VARCHAR(250)   ENCODE lzo
-	,bar_product_desc VARCHAR(250)   ENCODE lzo
-	,bar_product_lvl1 VARCHAR(250)   ENCODE lzo
-	,bar_product_lvl2 VARCHAR(250)   ENCODE lzo
-	,bar_product_lvl3 VARCHAR(250)   ENCODE lzo
-	,bar_product_lvl4 VARCHAR(250)   ENCODE lzo
-	,bar_product_lvl5 VARCHAR(250)   ENCODE lzo
-	,etl_crte_user VARCHAR(100)   ENCODE lzo
-	,etl_crte_ts DATE   ENCODE az64
-	,etl_updt_user VARCHAR(100)   ENCODE lzo
-	,etl_updt_ts DATE   ENCODE az64
-)
-DISTSTYLE EVEN
-;
-ALTER TABLE global_pl.bar_product_attr_temp owner to base_admin;
-
-
--- global_pl.calendar definition
-
--- Drop table
-
--- DROP TABLE global_pl.calendar;
-
---DROP TABLE global_pl.calendar;
-CREATE TABLE IF NOT EXISTS global_pl.calendar
-(
-	dy_id NUMERIC(18,0)   ENCODE az64
-	,dy_dte TIMESTAMP WITHOUT TIME ZONE   ENCODE az64
-	,absolute_dy_nbr NUMERIC(18,0)   ENCODE az64
-	,absolute_wk_nbr NUMERIC(18,0)   ENCODE az64
-	,absolute_mth_nbr NUMERIC(18,0)   ENCODE az64
-	,absolute_qtr_nbr NUMERIC(18,0)   ENCODE az64
-	,dy_in_wk_nbr NUMERIC(18,0)   ENCODE az64
-	,dy_in_wk_name VARCHAR(256)   ENCODE lzo
-	,julian_dy_nbr NUMERIC(18,0)   ENCODE az64
-	,clndr_wk_nbr NUMERIC(18,0)   ENCODE az64
-	,clndr_wk_id NUMERIC(18,0)   ENCODE az64
-	,clndr_mth_nbr NUMERIC(18,0)   ENCODE az64
-	,clndr_mth_id VARCHAR(256)   ENCODE lzo
-	,clndr_mth_name VARCHAR(256)   ENCODE lzo
-	,clndr_qtr_nbr NUMERIC(18,0)   ENCODE az64
-	,clndr_qtr_id VARCHAR(256)   ENCODE lzo
-	,clndr_qtr_name VARCHAR(256)   ENCODE lzo
-	,clndr_yr_id NUMERIC(18,0)   ENCODE az64
-	,clndr_dy_in_mth_nbr NUMERIC(18,0)   ENCODE az64
-	,is_first_dy_in_clndr_mth_flag VARCHAR(256)   ENCODE lzo
-	,is_last_dy_in_clndr_mth_flag VARCHAR(256)   ENCODE lzo
-	,wk_begin_dte TIMESTAMP WITHOUT TIME ZONE   ENCODE az64
-	,wk_end_dte NUMERIC(18,0)   ENCODE az64
-	,fmth_begin_dte NUMERIC(18,0)   ENCODE az64
-	,fmth_end_dte NUMERIC(18,0)   ENCODE az64
-	,fqtr_begin_dte NUMERIC(18,0)   ENCODE az64
-	,fqtr_end_dte NUMERIC(18,0)   ENCODE az64
-	,fyr_begin_dte NUMERIC(18,0)   ENCODE az64
-	,fyr_end_dte NUMERIC(18,0)   ENCODE az64
-	,fwk_nbr NUMERIC(18,0)   ENCODE az64
-	,fwk_id NUMERIC(18,0)   ENCODE az64
-	,fwk_cd VARCHAR(256)   ENCODE lzo
-	,fmth_nbr NUMERIC(18,0)   ENCODE az64
-	,fmth_id NUMERIC(18,0)   ENCODE az64
-	,fmth_cd VARCHAR(256)   ENCODE lzo
-	,fmth_name VARCHAR(256)   ENCODE lzo
-	,fmth_short_name VARCHAR(256)   ENCODE lzo
-	,fqtr_nbr NUMERIC(18,0)   ENCODE az64
-	,fqtr_id NUMERIC(18,0)   ENCODE az64
-	,fqtr_cd VARCHAR(256)   ENCODE lzo
-	,fqtr_name VARCHAR(256)   ENCODE lzo
-	,fyr_id NUMERIC(18,0)   ENCODE az64
-	,fdy_in_mth_nbr NUMERIC(18,0)   ENCODE az64
-	,fscl_days_remaining_in_mth NUMERIC(18,0)   ENCODE az64
-	,fdy_in_qtr_nbr NUMERIC(18,0)   ENCODE az64
-	,fscl_days_remaining_in_qtr NUMERIC(18,0)   ENCODE az64
-	,fdy_in_yr_nbr NUMERIC(18,0)   ENCODE az64
-	,fscl_days_remaining_in_yr NUMERIC(18,0)   ENCODE az64
-	,fwk_in_mth_nbr NUMERIC(18,0)   ENCODE az64
-	,fwk_in_qtr NUMERIC(18,0)   ENCODE az64
-	,is_wk_dy_flag VARCHAR(256)   ENCODE lzo
-	,is_weekend_flag VARCHAR(256)   ENCODE lzo
-	,is_first_dy_of_fwk_flag VARCHAR(256)   ENCODE lzo
-	,is_last_dy_of_fwk_flag VARCHAR(256)   ENCODE lzo
-	,is_first_dy_of_fmth_flag VARCHAR(256)   ENCODE lzo
-	,is_last_dy_of_fmth_flag VARCHAR(256)   ENCODE lzo
-	,is_first_dy_of_fqtr_flag VARCHAR(256)   ENCODE lzo
-	,is_last_dy_of_fqtr_flag VARCHAR(256)   ENCODE lzo
-	,is_first_dy_of_fyr_flag VARCHAR(256)   ENCODE lzo
-	,is_last_dy_of_fyr_flag VARCHAR(256)   ENCODE lzo
-	,season_name VARCHAR(256)   ENCODE lzo
-	,holiday_name VARCHAR(256)   ENCODE lzo
-	,holiday_season_name VARCHAR(256)   ENCODE lzo
-	,holiday_observed_name VARCHAR(256)   ENCODE lzo
-	,special_event_name VARCHAR(256)   ENCODE lzo
-	,etl_batch_id NUMERIC(18,0)   ENCODE az64
-)
-DISTSTYLE AUTO
-;
-ALTER TABLE global_pl.calendar owner to base_admin;
-
-
--- global_pl.clndr_dim definition
-
--- Drop table
-
--- DROP TABLE global_pl.clndr_dim;
-
---DROP TABLE global_pl.clndr_dim;
-CREATE TABLE IF NOT EXISTS global_pl.clndr_dim
-(
-	dy_id INTEGER NOT NULL  ENCODE RAW
-	,dy_dte DATE   ENCODE az64
-	,absolute_dy_nbr INTEGER   ENCODE az64
-	,absolute_wk_nbr INTEGER   ENCODE az64
-	,absolute_mth_nbr INTEGER   ENCODE az64
-	,absolute_qtr_nbr INTEGER   ENCODE az64
-	,dy_in_wk_nbr INTEGER   ENCODE az64
-	,dy_in_wk_name VARCHAR(20)   ENCODE lzo
-	,julian_dy_nbr INTEGER   ENCODE az64
-	,clndr_wk_nbr INTEGER   ENCODE az64
-	,clndr_wk_id INTEGER   ENCODE az64
-	,clndr_mth_nbr INTEGER   ENCODE az64
-	,clndr_mth_id VARCHAR(20)   ENCODE lzo
-	,clndr_mth_name VARCHAR(20)   ENCODE lzo
-	,clndr_qtr_nbr INTEGER   ENCODE az64
-	,clndr_qtr_id VARCHAR(20)   ENCODE lzo
-	,clndr_qtr_name VARCHAR(20)   ENCODE lzo
-	,clndr_yr_id INTEGER   ENCODE az64
-	,clndr_dy_in_mth_nbr INTEGER   ENCODE az64
-	,is_first_dy_in_clndr_mth_flag VARCHAR(20)   ENCODE lzo
-	,is_last_dy_in_clndr_mth_flag VARCHAR(20)   ENCODE lzo
-	,wk_begin_dte DATE   ENCODE az64
-	,wk_end_dte INTEGER   ENCODE az64
-	,fmth_begin_dte INTEGER   ENCODE az64
-	,fmth_end_dte INTEGER   ENCODE az64
-	,fqtr_begin_dte INTEGER   ENCODE az64
-	,fqtr_end_dte INTEGER   ENCODE az64
-	,fyr_begin_dte INTEGER   ENCODE az64
-	,fyr_end_dte INTEGER   ENCODE az64
-	,fwk_nbr INTEGER   ENCODE az64
-	,fwk_id INTEGER   ENCODE az64
-	,fwk_cd VARCHAR(20)   ENCODE lzo
-	,fmth_nbr INTEGER   ENCODE az64
-	,fmth_id INTEGER   ENCODE az64
-	,fmth_cd VARCHAR(20)   ENCODE lzo
-	,fmth_name VARCHAR(20)   ENCODE lzo
-	,fmth_short_name VARCHAR(20)   ENCODE lzo
-	,fqtr_nbr INTEGER   ENCODE az64
-	,fqtr_id INTEGER   ENCODE az64
-	,fqtr_cd VARCHAR(20)   ENCODE lzo
-	,fqtr_name VARCHAR(20)   ENCODE lzo
-	,fyr_id INTEGER   ENCODE az64
-	,fdy_in_mth_nbr INTEGER   ENCODE az64
-	,fscl_days_remaining_in_mth INTEGER   ENCODE az64
-	,fdy_in_qtr_nbr INTEGER   ENCODE az64
-	,fscl_days_remaining_in_qtr INTEGER   ENCODE az64
-	,fdy_in_yr_nbr INTEGER   ENCODE az64
-	,fscl_days_remaining_in_yr INTEGER   ENCODE az64
-	,fwk_in_mth_nbr INTEGER   ENCODE az64
-	,fwk_in_qtr INTEGER   ENCODE az64
-	,is_wk_dy_flag VARCHAR(20)   ENCODE lzo
-	,is_weekend_flag VARCHAR(20)   ENCODE lzo
-	,is_first_dy_of_fwk_flag VARCHAR(20)   ENCODE lzo
-	,is_last_dy_of_fwk_flag VARCHAR(20)   ENCODE lzo
-	,is_first_dy_of_fmth_flag VARCHAR(20)   ENCODE lzo
-	,is_last_dy_of_fmth_flag VARCHAR(20)   ENCODE lzo
-	,is_first_dy_of_fqtr_flag VARCHAR(20)   ENCODE lzo
-	,is_last_dy_of_fqtr_flag VARCHAR(20)   ENCODE lzo
-	,is_first_dy_of_fyr_flag VARCHAR(20)   ENCODE lzo
-	,is_last_dy_of_fyr_flag VARCHAR(20)   ENCODE lzo
-	,season_name VARCHAR(20)   ENCODE lzo
-	,holiday_name VARCHAR(20)   ENCODE lzo
-	,holiday_season_name VARCHAR(20)   ENCODE lzo
-	,holiday_observed_name VARCHAR(20)   ENCODE lzo
-	,special_event_name VARCHAR(20)   ENCODE lzo
-	,etl_batch_id INTEGER   ENCODE az64
-	,PRIMARY KEY (dy_id)
-)
-DISTSTYLE KEY
- DISTKEY (dy_id)
- SORTKEY (
-	dy_id
-	)
-;
-ALTER TABLE global_pl.clndr_dim owner to base_admin;
-
-
--- global_pl.customer_master definition
-
--- Drop table
-
--- DROP TABLE global_pl.customer_master;
-
---DROP TABLE global_pl.customer_master;
-CREATE TABLE IF NOT EXISTS global_pl.customer_master
-(
-	erp_customer_number VARCHAR(500) NOT NULL  ENCODE RAW
-	,erp_customer_address_code VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_code_1 VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_code_2 VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_code_3 VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_code_4 VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_code_5 VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_key VARCHAR(500)   ENCODE lzo
-	,erp_customer_city_code VARCHAR(500)   ENCODE lzo
-	,erp_customer_county_code VARCHAR(500)   ENCODE lzo
-	,erp_customer_country VARCHAR(500)   ENCODE lzo
-	,erp_customer_name VARCHAR(500)   ENCODE lzo
-	,erp_customer_city VARCHAR(500)   ENCODE lzo
-	,erp_customer_district VARCHAR(500)   ENCODE lzo
-	,erp_customer_po_box VARCHAR(500)   ENCODE lzo
-	,erp_customer_po_box_postal_code VARCHAR(500)   ENCODE lzo
-	,erp_customer_postal_code VARCHAR(500)   ENCODE lzo
-	,erp_customer_region VARCHAR(500)   ENCODE lzo
-	,erp_customer_regional_market VARCHAR(500)   ENCODE lzo
-	,erp_source VARCHAR(50)   ENCODE lzo
-	,erp_customer_address VARCHAR(500)   ENCODE lzo
-	,etl_crte_ts VARCHAR(50)   ENCODE lzo
-	,etl_crte_user VARCHAR(50)   ENCODE lzo
-	,PRIMARY KEY (erp_customer_number)
-)
-DISTSTYLE ALL
- SORTKEY (
-	erp_customer_number
-	, erp_customer_name
-	)
-;
-ALTER TABLE global_pl.customer_master owner to hcloperators;
-
-
--- global_pl.customer_master_temp definition
-
--- Drop table
-
--- DROP TABLE global_pl.customer_master_temp;
-
---DROP TABLE global_pl.customer_master_temp;
-CREATE TABLE IF NOT EXISTS global_pl.customer_master_temp
-(
-	erp_customer_number VARCHAR(500)   ENCODE lzo
-	,erp_customer_address_code VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_code_1 VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_code_2 VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_code_3 VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_code_4 VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_code_5 VARCHAR(500)   ENCODE lzo
-	,erp_customer_industry_key VARCHAR(500)   ENCODE lzo
-	,erp_customer_city_code VARCHAR(500)   ENCODE lzo
-	,erp_customer_county_code VARCHAR(500)   ENCODE lzo
-	,erp_customer_country VARCHAR(500)   ENCODE lzo
-	,erp_customer_name VARCHAR(500)   ENCODE lzo
-	,erp_customer_city VARCHAR(500)   ENCODE lzo
-	,erp_customer_district VARCHAR(500)   ENCODE lzo
-	,erp_customer_po_box VARCHAR(500)   ENCODE lzo
-	,erp_customer_po_box_postal_code VARCHAR(500)   ENCODE lzo
-	,erp_customer_postal_code VARCHAR(500)   ENCODE lzo
-	,erp_customer_region VARCHAR(500)   ENCODE lzo
-	,erp_customer_regional_market VARCHAR(500)   ENCODE lzo
-	,erp_source VARCHAR(50)   ENCODE lzo
-	,erp_customer_address VARCHAR(500)   ENCODE lzo
-	,etl_crte_ts VARCHAR(50)   ENCODE lzo
-	,etl_crte_user VARCHAR(50)   ENCODE lzo
-)
-DISTSTYLE EVEN
-;
-ALTER TABLE global_pl.customer_master_temp owner to base_admin;
-
-
--- global_pl.hfm_temp definition
-
--- Drop table
-
--- DROP TABLE global_pl.hfm_temp;
-
---DROP TABLE global_pl.hfm_temp;
-CREATE TABLE IF NOT EXISTS global_pl.hfm_temp
-(
-	bar_period VARCHAR(20)   ENCODE lzo
-	,bar_year VARCHAR(20)   ENCODE lzo
-	,bar_function VARCHAR(20)   ENCODE lzo
-	,bar_amt NUMERIC(20,10)   ENCODE az64
-)
-DISTSTYLE AUTO
-;
-ALTER TABLE global_pl.hfm_temp owner to base_admin;
-
-
--- global_pl.job_master definition
-
--- Drop table
-
--- DROP TABLE global_pl.job_master;
-
---DROP TABLE global_pl.job_master;
-CREATE TABLE IF NOT EXISTS global_pl.job_master
-(
-	job_id INTEGER NOT NULL  ENCODE az64
-	,job_name VARCHAR(100)   ENCODE lzo
-	,table_name VARCHAR(100)   ENCODE lzo
-	,frequency VARCHAR(100)   ENCODE lzo
-	,job_state VARCHAR(100)   ENCODE lzo
-	,etl_crte_user VARCHAR(100)   ENCODE lzo
-	,etl_crte_ts DATE   ENCODE az64
-	,etl_updt_user VARCHAR(100)   ENCODE lzo
-	,etl_updt_ts DATE   ENCODE az64
-	,PRIMARY KEY (job_id)
-)
-DISTSTYLE ALL
-;
-ALTER TABLE global_pl.job_master owner to hcloperators;
-
--- Table Triggers
-
-CREATE CONSTRAINT TRIGGER "RI_ConstraintTrigger_664873" AFTER
-DELETE
-    ON
-    global_pl.job_master
-FROM
-    global_pl.job_history NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE "RI_FKey_noaction_del"('job_history_job_id_fkey',
-    'job_history',
-    'job_master',
-    'UNSPECIFIED',
-    'job_id',
-    'job_id');
-CREATE CONSTRAINT TRIGGER "RI_ConstraintTrigger_664874" AFTER
-UPDATE
-    ON
-    global_pl.job_master
-FROM
-    global_pl.job_history NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE "RI_FKey_noaction_upd"('job_history_job_id_fkey',
-    'job_history',
-    'job_master',
-    'UNSPECIFIED',
-    'job_id',
-    'job_id');
-
-
--- global_pl.material_master definition
-
--- Drop table
-
--- DROP TABLE global_pl.material_master;
-
---DROP TABLE global_pl.material_master;
-CREATE TABLE IF NOT EXISTS global_pl.material_master
-(
-	erp_material_number VARCHAR(100) NOT NULL  ENCODE lzo
-	,erp_material_description VARCHAR(100)   ENCODE lzo
-	,erp_material_category VARCHAR(100)   ENCODE lzo
-	,erp_container_requirements VARCHAR(100)   ENCODE lzo
-	,erp_generic_material_with_logistical_variants VARCHAR(100)   ENCODE lzo
-	,erp_old_material_number VARCHAR(100)   ENCODE lzo
-	,erp_brand VARCHAR(100)   ENCODE lzo
-	,erp_width NUMERIC(38,10)   ENCODE az64
-	,erp_gross_weight NUMERIC(38,10)   ENCODE az64
-	,erp_purchase_order_uom VARCHAR(100)   ENCODE lzo
-	,erp_source_of_supply VARCHAR(100)   ENCODE lzo
-	,erp_procurement_rule VARCHAR(100)   ENCODE lzo
-	,erp_cad_indicator VARCHAR(100)   ENCODE lzo
-	,erp_quality_conversion_method VARCHAR(100)   ENCODE lzo
-	,erp_material_completion_level NUMERIC(38,10)   ENCODE az64
-	,erp_internal_object_number NUMERIC(38,10)   ENCODE az64
-	,erp_valid_from_date DATE   ENCODE az64
-	,erp_ean_upc VARCHAR(100)   ENCODE lzo
-	,erp_purhcasing_value_key VARCHAR(100)   ENCODE lzo
-	,erp_unit_of_weight_packaging VARCHAR(100)   ENCODE lzo
-	,erp_allowed_packaging_weight NUMERIC(38,10)   ENCODE az64
-	,erp_volume_unit VARCHAR(100)   ENCODE lzo
-	,erp_allowed_packaging_volume NUMERIC(38,10)   ENCODE az64
-	,erp_weight_unit VARCHAR(100)   ENCODE lzo
-	,erp_size_dimensions VARCHAR(100)   ENCODE lzo
-	,erp_height NUMERIC(38,10)   ENCODE az64
-	,erp_material_group VARCHAR(100)   ENCODE lzo
-	,erp_industry_sector VARCHAR(100)   ENCODE lzo
-	,erp_material_type VARCHAR(100)   ENCODE lzo
-	,erp_net_weight NUMERIC(38,10)   ENCODE az64
-	,erp_product_hierarchy VARCHAR(100)   ENCODE lzo
-	,erp_division VARCHAR(100)   ENCODE lzo
-	,erp_hazardous_material_number VARCHAR(100)   ENCODE lzo
-	,erp_transportation_group VARCHAR(100)   ENCODE lzo
-	,erp_packaging_material_type VARCHAR(100)   ENCODE lzo
-	,erp_global_product_hierarchy VARCHAR(100)   ENCODE lzo
-	,erp_source VARCHAR(100)   ENCODE lzo
-	,etl_crte_user VARCHAR(50)   ENCODE lzo
-	,etl_crte_ts VARCHAR(50)   ENCODE lzo
-	,PRIMARY KEY (erp_material_number)
-)
-DISTSTYLE ALL
-;
-ALTER TABLE global_pl.material_master owner to base_admin;
-
-
--- global_pl.material_master_temp definition
-
--- Drop table
-
--- DROP TABLE global_pl.material_master_temp;
-
---DROP TABLE global_pl.material_master_temp;
-CREATE TABLE IF NOT EXISTS global_pl.material_master_temp
-(
-	erp_material_number VARCHAR(100)   ENCODE lzo
-	,erp_material_description VARCHAR(100)   ENCODE lzo
-	,erp_material_category VARCHAR(100)   ENCODE lzo
-	,erp_container_requirements VARCHAR(100)   ENCODE lzo
-	,erp_generic_material_with_logistical_variants VARCHAR(100)   ENCODE lzo
-	,erp_old_material_number VARCHAR(100)   ENCODE lzo
-	,erp_brand VARCHAR(100)   ENCODE lzo
-	,erp_width NUMERIC(38,10)   ENCODE az64
-	,erp_gross_weight NUMERIC(38,10)   ENCODE az64
-	,erp_purchase_order_uom VARCHAR(100)   ENCODE lzo
-	,erp_source_of_supply VARCHAR(100)   ENCODE lzo
-	,erp_procurement_rule VARCHAR(100)   ENCODE lzo
-	,erp_cad_indicator VARCHAR(100)   ENCODE lzo
-	,erp_quality_conversion_method VARCHAR(100)   ENCODE lzo
-	,erp_material_completion_level NUMERIC(38,10)   ENCODE az64
-	,erp_internal_object_number NUMERIC(38,10)   ENCODE az64
-	,erp_valid_from_date DATE   ENCODE az64
-	,erp_ean_upc VARCHAR(100)   ENCODE lzo
-	,erp_purhcasing_value_key VARCHAR(100)   ENCODE lzo
-	,erp_unit_of_weight_packaging VARCHAR(100)   ENCODE lzo
-	,erp_allowed_packaging_weight NUMERIC(38,10)   ENCODE az64
-	,erp_volume_unit VARCHAR(100)   ENCODE lzo
-	,erp_allowed_packaging_volume NUMERIC(38,10)   ENCODE az64
-	,erp_weight_unit VARCHAR(100)   ENCODE lzo
-	,erp_size_dimensions VARCHAR(100)   ENCODE lzo
-	,erp_height NUMERIC(38,10)   ENCODE az64
-	,erp_material_group VARCHAR(100)   ENCODE lzo
-	,erp_industry_sector VARCHAR(100)   ENCODE lzo
-	,erp_material_type VARCHAR(100)   ENCODE lzo
-	,erp_net_weight NUMERIC(38,10)   ENCODE az64
-	,erp_product_hierarchy VARCHAR(100)   ENCODE lzo
-	,erp_division VARCHAR(100)   ENCODE lzo
-	,erp_hazardous_material_number VARCHAR(100)   ENCODE lzo
-	,erp_transportation_group VARCHAR(100)   ENCODE lzo
-	,erp_packaging_material_type VARCHAR(100)   ENCODE lzo
-	,erp_global_product_hierarchy VARCHAR(100)   ENCODE lzo
-	,erp_source VARCHAR(100)   ENCODE lzo
-	,etl_crte_user VARCHAR(50)   ENCODE lzo
-	,etl_crte_ts VARCHAR(50)   ENCODE lzo
-)
-DISTSTYLE EVEN
-;
-ALTER TABLE global_pl.material_master_temp owner to base_admin;
-
-
--- global_pl.pl_trans_fact definition
-
--- Drop table
-
--- DROP TABLE global_pl.pl_trans_fact;
-
---DROP TABLE global_pl.pl_trans_fact;
-CREATE TABLE IF NOT EXISTS global_pl.pl_trans_fact
-(
-	bar_account VARCHAR(500)   ENCODE lzo
-	,bar_amt_lc NUMERIC(38,10)   ENCODE az64
-	,bar_brand VARCHAR(500)   ENCODE lzo
-	,bar_bu VARCHAR(500)   ENCODE lzo
-	,bar_currtype VARCHAR(500)   ENCODE lzo
-	,bar_customer VARCHAR(500)   ENCODE lzo
-	,bar_entity VARCHAR(500)   ENCODE lzo
-	,bar_function VARCHAR(500)   ENCODE lzo
-	,bar_period VARCHAR(500)   ENCODE lzo
-	,bar_product VARCHAR(500)   ENCODE lzo
-	,bar_scenario VARCHAR(500)   ENCODE lzo
-	,bar_shipto VARCHAR(500)   ENCODE lzo
-	,bar_year VARCHAR(500)   ENCODE lzo
-	,bar_fiscal_period VARCHAR(500)   ENCODE lzo
-	,erp_account VARCHAR(500)   ENCODE lzo
-	,erp_brand_code VARCHAR(500)   ENCODE lzo
-	,erp_business_area VARCHAR(500)   ENCODE lzo
-	,erp_company_code VARCHAR(500)   ENCODE lzo
-	,erp_cost_center VARCHAR(500)   ENCODE lzo
-	,erp_doc_type VARCHAR(500)   ENCODE lzo
-	,erp_doc_line_num VARCHAR(500)   ENCODE lzo
-	,erp_doc_num VARCHAR(500)   ENCODE lzo
-	,erp_document_text VARCHAR(1000)   ENCODE lzo
-	,erp_vendor VARCHAR(500)   ENCODE lzo
-	,erp_material VARCHAR(500)   ENCODE lzo
-	,erp_customer_parent VARCHAR(500)   ENCODE lzo
-	,erp_posting_date VARCHAR(500)   ENCODE lzo
-	,erp_quantity NUMERIC(38,10)   ENCODE az64
-	,erp_quantity_uom VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_type VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_line_num VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_num VARCHAR(500)   ENCODE lzo
-	,erp_profit_center VARCHAR(500)   ENCODE lzo
-	,erp_sales_group VARCHAR(500)   ENCODE lzo
-	,erp_sales_office VARCHAR(500)   ENCODE lzo
-	,erp_customer_ship_to VARCHAR(500)   ENCODE lzo
-	,erp_customer_sold_to VARCHAR(500)   ENCODE lzo
-	,erp_plant VARCHAR(500)   ENCODE lzo
-	,bar_bods_loaddatetime VARCHAR(500)   ENCODE lzo
-	,erp_chartaccts VARCHAR(500)   ENCODE lzo
-	,bar_bods_record_id VARCHAR(500)   ENCODE lzo
-	,erp_source VARCHAR(500)   ENCODE lzo
-	,bar_s_entity_currency VARCHAR(50)   ENCODE lzo
-	,bar_s_curr_rate_actual NUMERIC(38,10)   ENCODE az64
-	,bar_amt_usd NUMERIC(38,10)   ENCODE az64
-	,etl_crte_user VARCHAR(50)   ENCODE lzo
-	,etl_crte_ts VARCHAR(50)   ENCODE lzo
-)
-DISTSTYLE KEY
- DISTKEY (bar_bods_record_id)
-;
-ALTER TABLE global_pl.pl_trans_fact owner to base_admin;
-
-
--- global_pl.pl_trans_fact_20210502 definition
-
--- Drop table
-
--- DROP TABLE global_pl.pl_trans_fact_20210502;
-
---DROP TABLE global_pl.pl_trans_fact_20210502;
-CREATE TABLE IF NOT EXISTS global_pl.pl_trans_fact_20210502
-(
-	bar_account VARCHAR(500)   ENCODE lzo
-	,bar_amt_lc NUMERIC(38,10)   ENCODE az64
-	,bar_brand VARCHAR(500)   ENCODE lzo
-	,bar_bu VARCHAR(500)   ENCODE lzo
-	,bar_currtype VARCHAR(500)   ENCODE lzo
-	,bar_customer VARCHAR(500)   ENCODE lzo
-	,bar_entity VARCHAR(500)   ENCODE lzo
-	,bar_function VARCHAR(500)   ENCODE lzo
-	,bar_period VARCHAR(500)   ENCODE lzo
-	,bar_product VARCHAR(500)   ENCODE lzo
-	,bar_scenario VARCHAR(500)   ENCODE lzo
-	,bar_shipto VARCHAR(500)   ENCODE lzo
-	,bar_year VARCHAR(500)   ENCODE lzo
-	,bar_fiscal_period VARCHAR(500)   ENCODE lzo
-	,erp_account VARCHAR(500)   ENCODE lzo
-	,erp_brand_code VARCHAR(500)   ENCODE lzo
-	,erp_business_area VARCHAR(500)   ENCODE lzo
-	,erp_company_code VARCHAR(500)   ENCODE lzo
-	,erp_cost_center VARCHAR(500)   ENCODE lzo
-	,erp_doc_type VARCHAR(500)   ENCODE lzo
-	,erp_doc_line_num VARCHAR(500)   ENCODE lzo
-	,erp_doc_num VARCHAR(500)   ENCODE lzo
-	,erp_document_text VARCHAR(1000)   ENCODE lzo
-	,erp_vendor VARCHAR(500)   ENCODE lzo
-	,erp_material VARCHAR(500)   ENCODE lzo
-	,erp_customer_parent VARCHAR(500)   ENCODE lzo
-	,erp_posting_date VARCHAR(500)   ENCODE lzo
-	,erp_quantity NUMERIC(38,10)   ENCODE az64
-	,erp_quantity_uom VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_type VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_line_num VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_num VARCHAR(500)   ENCODE lzo
-	,erp_profit_center VARCHAR(500)   ENCODE lzo
-	,erp_sales_group VARCHAR(500)   ENCODE lzo
-	,erp_sales_office VARCHAR(500)   ENCODE lzo
-	,erp_customer_ship_to VARCHAR(500)   ENCODE lzo
-	,erp_customer_sold_to VARCHAR(500)   ENCODE lzo
-	,erp_plant VARCHAR(500)   ENCODE lzo
-	,bar_bods_loaddatetime VARCHAR(500)   ENCODE lzo
-	,erp_chartaccts VARCHAR(500)   ENCODE lzo
-	,bar_bods_record_id VARCHAR(500)   ENCODE lzo
-	,erp_source VARCHAR(500)   ENCODE lzo
-	,bar_s_entity_currency VARCHAR(50)   ENCODE lzo
-	,bar_s_curr_rate_actual NUMERIC(38,10)   ENCODE az64
-	,bar_amt_usd NUMERIC(38,10)   ENCODE az64
-	,etl_crte_user VARCHAR(50)   ENCODE lzo
-	,etl_crte_ts VARCHAR(50)   ENCODE lzo
-)
-DISTSTYLE KEY
- DISTKEY (bar_bods_record_id)
-;
-ALTER TABLE global_pl.pl_trans_fact_20210502 owner to base_admin;
-
-
--- global_pl.pl_trans_fact_20210507 definition
-
--- Drop table
-
--- DROP TABLE global_pl.pl_trans_fact_20210507;
-
---DROP TABLE global_pl.pl_trans_fact_20210507;
-CREATE TABLE IF NOT EXISTS global_pl.pl_trans_fact_20210507
-(
-	bar_account VARCHAR(500)   ENCODE lzo
-	,bar_amt_lc NUMERIC(38,10)   ENCODE az64
-	,bar_brand VARCHAR(500)   ENCODE lzo
-	,bar_bu VARCHAR(500)   ENCODE lzo
-	,bar_currtype VARCHAR(500)   ENCODE lzo
-	,bar_customer VARCHAR(500)   ENCODE lzo
-	,bar_entity VARCHAR(500)   ENCODE lzo
-	,bar_function VARCHAR(500)   ENCODE lzo
-	,bar_period VARCHAR(500)   ENCODE lzo
-	,bar_product VARCHAR(500)   ENCODE lzo
-	,bar_scenario VARCHAR(500)   ENCODE lzo
-	,bar_shipto VARCHAR(500)   ENCODE lzo
-	,bar_year VARCHAR(500)   ENCODE lzo
-	,bar_fiscal_period VARCHAR(500)   ENCODE lzo
-	,erp_account VARCHAR(500)   ENCODE lzo
-	,erp_brand_code VARCHAR(500)   ENCODE lzo
-	,erp_business_area VARCHAR(500)   ENCODE lzo
-	,erp_company_code VARCHAR(500)   ENCODE lzo
-	,erp_cost_center VARCHAR(500)   ENCODE lzo
-	,erp_doc_type VARCHAR(500)   ENCODE lzo
-	,erp_doc_line_num VARCHAR(500)   ENCODE lzo
-	,erp_doc_num VARCHAR(500)   ENCODE lzo
-	,erp_document_text VARCHAR(1000)   ENCODE lzo
-	,erp_vendor VARCHAR(500)   ENCODE lzo
-	,erp_material VARCHAR(500)   ENCODE lzo
-	,erp_customer_parent VARCHAR(500)   ENCODE lzo
-	,erp_posting_date VARCHAR(500)   ENCODE lzo
-	,erp_quantity NUMERIC(38,10)   ENCODE az64
-	,erp_quantity_uom VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_type VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_line_num VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_num VARCHAR(500)   ENCODE lzo
-	,erp_profit_center VARCHAR(500)   ENCODE lzo
-	,erp_sales_group VARCHAR(500)   ENCODE lzo
-	,erp_sales_office VARCHAR(500)   ENCODE lzo
-	,erp_customer_ship_to VARCHAR(500)   ENCODE lzo
-	,erp_customer_sold_to VARCHAR(500)   ENCODE lzo
-	,erp_plant VARCHAR(500)   ENCODE lzo
-	,bar_bods_loaddatetime VARCHAR(500)   ENCODE lzo
-	,erp_chartaccts VARCHAR(500)   ENCODE lzo
-	,bar_bods_record_id VARCHAR(500)   ENCODE lzo
-	,erp_source VARCHAR(500)   ENCODE lzo
-	,bar_s_entity_currency VARCHAR(50)   ENCODE lzo
-	,bar_s_curr_rate_actual NUMERIC(38,10)   ENCODE az64
-	,bar_amt_usd NUMERIC(38,10)   ENCODE az64
-	,etl_crte_user VARCHAR(50)   ENCODE lzo
-	,etl_crte_ts VARCHAR(50)   ENCODE lzo
-)
-DISTSTYLE KEY
- DISTKEY (bar_bods_record_id)
-;
-ALTER TABLE global_pl.pl_trans_fact_20210507 owner to base_admin;
-
-
--- global_pl.pl_trans_fact_temp definition
-
--- Drop table
-
--- DROP TABLE global_pl.pl_trans_fact_temp;
-
---DROP TABLE global_pl.pl_trans_fact_temp;
-CREATE TABLE IF NOT EXISTS global_pl.pl_trans_fact_temp
-(
-	bar_account VARCHAR(500)   ENCODE lzo
-	,bar_amt_lc NUMERIC(38,10)   ENCODE az64
-	,bar_brand VARCHAR(500)   ENCODE lzo
-	,bar_bu VARCHAR(500)   ENCODE lzo
-	,bar_currtype VARCHAR(500)   ENCODE lzo
-	,bar_customer VARCHAR(500)   ENCODE lzo
-	,bar_entity VARCHAR(500)   ENCODE lzo
-	,bar_function VARCHAR(500)   ENCODE lzo
-	,bar_period VARCHAR(500)   ENCODE lzo
-	,bar_product VARCHAR(500)   ENCODE lzo
-	,bar_scenario VARCHAR(500)   ENCODE lzo
-	,bar_shipto VARCHAR(500)   ENCODE lzo
-	,bar_year VARCHAR(500)   ENCODE lzo
-	,bar_fiscal_period VARCHAR(500)   ENCODE lzo
-	,erp_account VARCHAR(500)   ENCODE lzo
-	,erp_brand_code VARCHAR(500)   ENCODE lzo
-	,erp_business_area VARCHAR(500)   ENCODE lzo
-	,erp_company_code VARCHAR(500)   ENCODE lzo
-	,erp_cost_center VARCHAR(500)   ENCODE lzo
-	,erp_doc_type VARCHAR(500)   ENCODE lzo
-	,erp_doc_line_num VARCHAR(500)   ENCODE lzo
-	,erp_doc_num VARCHAR(500)   ENCODE lzo
-	,erp_document_text VARCHAR(1000)   ENCODE lzo
-	,erp_vendor VARCHAR(500)   ENCODE lzo
-	,erp_material VARCHAR(500)   ENCODE lzo
-	,erp_customer_parent VARCHAR(500)   ENCODE lzo
-	,erp_posting_date VARCHAR(500)   ENCODE lzo
-	,erp_quantity NUMERIC(38,10)   ENCODE az64
-	,erp_quantity_uom VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_type VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_line_num VARCHAR(500)   ENCODE lzo
-	,erp_ref_doc_num VARCHAR(500)   ENCODE lzo
-	,erp_profit_center VARCHAR(500)   ENCODE lzo
-	,erp_sales_group VARCHAR(500)   ENCODE lzo
-	,erp_sales_office VARCHAR(500)   ENCODE lzo
-	,erp_customer_ship_to VARCHAR(500)   ENCODE lzo
-	,erp_customer_sold_to VARCHAR(500)   ENCODE lzo
-	,erp_plant VARCHAR(500)   ENCODE lzo
-	,bar_bods_loaddatetime VARCHAR(500)   ENCODE lzo
-	,erp_chartaccts VARCHAR(500)   ENCODE lzo
-	,bar_bods_record_id VARCHAR(500)   ENCODE lzo
-	,erp_source VARCHAR(500)   ENCODE lzo
-	,bar_s_entity_currency VARCHAR(50)   ENCODE lzo
-	,bar_s_curr_rate_actual NUMERIC(38,10)   ENCODE az64
-	,bar_amt_usd NUMERIC(38,10)   ENCODE az64
-	,etl_crte_user VARCHAR(50)   ENCODE lzo
-	,etl_crte_ts VARCHAR(50)   ENCODE lzo
-)
-DISTSTYLE KEY
- DISTKEY (bar_bods_record_id)
-;
-ALTER TABLE global_pl.pl_trans_fact_temp owner to base_admin;
-
-
--- global_pl.status_history definition
-
--- Drop table
-
--- DROP TABLE global_pl.status_history;
-
---DROP TABLE global_pl.status_history;
-CREATE TABLE IF NOT EXISTS global_pl.status_history
-(
-	run_id INTEGER NOT NULL DEFAULT "identity"(911236, 0, '1,1'::text) ENCODE az64
-	,job_nm VARCHAR(100)   ENCODE lzo
-	,run_date DATE   ENCODE az64
-	,run_seq INTEGER   ENCODE az64
-	,job_status VARCHAR(100)   ENCODE lzo
-	,curr_mon_rows_del INTEGER   ENCODE az64
-	,curr_mon_rows_ins INTEGER   ENCODE az64
-	,prev_mon_rows_del INTEGER   ENCODE az64
-	,prev_mon_rows_ins INTEGER   ENCODE az64
-	,start_time TIMESTAMP WITHOUT TIME ZONE   ENCODE az64
-	,end_time TIMESTAMP WITHOUT TIME ZONE   ENCODE az64
-	,PRIMARY KEY (run_id)
-)
-DISTSTYLE KEY
- DISTKEY (run_id)
-;
-ALTER TABLE global_pl.status_history owner to base_admin;
-
-
--- global_pl.status_history_1 definition
-
--- Drop table
-
--- DROP TABLE global_pl.status_history_1;
-
---DROP TABLE global_pl.status_history_1;
-CREATE TABLE IF NOT EXISTS global_pl.status_history_1
-(
-	run_id INTEGER NOT NULL DEFAULT "identity"(911348, 0, '1,1'::text) ENCODE az64
-	,job_nm VARCHAR(100)   ENCODE lzo
-	,run_date DATE   ENCODE az64
-	,run_seq INTEGER   ENCODE az64
-	,job_status VARCHAR(100)   ENCODE lzo
-	,curr_mon_rows_del INTEGER   ENCODE az64
-	,curr_mon_rows_ins INTEGER   ENCODE az64
-	,prev_mon_rows_del INTEGER   ENCODE az64
-	,prev_mon_rows_ins INTEGER   ENCODE az64
-	,start_time TIMESTAMP WITHOUT TIME ZONE   ENCODE az64
-	,end_time TIMESTAMP WITHOUT TIME ZONE   ENCODE az64
-	,PRIMARY KEY (run_id)
-)
-DISTSTYLE KEY
- DISTKEY (run_id)
-;
-ALTER TABLE global_pl.status_history_1 owner to base_admin;
-
-
--- global_pl.status_master definition
-
--- Drop table
-
--- DROP TABLE global_pl.status_master;
-
---DROP TABLE global_pl.status_master;
-CREATE TABLE IF NOT EXISTS global_pl.status_master
-(
-	id INTEGER NOT NULL DEFAULT "identity"(911226, 0, '1,1'::text) ENCODE az64
-	,tbl_type VARCHAR(100)   ENCODE lzo
-	,job_nm VARCHAR(100) NOT NULL  ENCODE lzo
-	,tgt_tbl_nm VARCHAR(100)   ENCODE lzo
-	,src_tbl_nm VARCHAR(100)   ENCODE lzo
-	,src_col_lst VARCHAR(65535)   ENCODE lzo
-	,tgt_col_lst VARCHAR(65535)   ENCODE lzo
-	,erp_source VARCHAR(100)   ENCODE lzo
-	,frequency VARCHAR(100)   ENCODE lzo
-	,job_state VARCHAR(100)   ENCODE lzo
-	,manual_run VARCHAR(100)   ENCODE lzo
-	,crte_user VARCHAR(100)   ENCODE lzo
-	,crte_ts VARCHAR(100)   ENCODE lzo
-	,PRIMARY KEY (id, job_nm)
-)
-DISTSTYLE ALL
-;
-ALTER TABLE global_pl.status_master owner to base_admin;
-
-
--- global_pl.status_master_1 definition
-
--- Drop table
-
--- DROP TABLE global_pl.status_master_1;
-
---DROP TABLE global_pl.status_master_1;
-CREATE TABLE IF NOT EXISTS global_pl.status_master_1
-(
-	id INTEGER NOT NULL DEFAULT "identity"(911343, 0, '1,1'::text) ENCODE az64
-	,tbl_type VARCHAR(100)   ENCODE lzo
-	,job_nm VARCHAR(100) NOT NULL  ENCODE lzo
-	,tgt_tbl_nm VARCHAR(100)   ENCODE lzo
-	,src_tbl_nm VARCHAR(100)   ENCODE lzo
-	,src_col_lst VARCHAR(65535)   ENCODE lzo
-	,tgt_col_lst VARCHAR(65535)   ENCODE lzo
-	,erp_source VARCHAR(100)   ENCODE lzo
-	,frequency VARCHAR(100)   ENCODE lzo
-	,job_state VARCHAR(100)   ENCODE lzo
-	,manual_run VARCHAR(100)   ENCODE lzo
-	,crte_user VARCHAR(100)   ENCODE lzo
-	,crte_ts VARCHAR(100)   ENCODE lzo
-	,PRIMARY KEY (id, job_nm)
-)
-DISTSTYLE ALL
-;
-ALTER TABLE global_pl.status_master_1 owner to base_admin;
-
-
--- global_pl.testsp definition
-
--- Drop table
-
--- DROP TABLE global_pl.testsp;
-
---DROP TABLE global_pl.testsp;
-CREATE TABLE IF NOT EXISTS global_pl.testsp
-(
-	id INTEGER  DEFAULT "identity"(985663, 0, '1,1'::text) ENCODE az64
-	,dtrun VARCHAR(100)   ENCODE lzo
-)
-DISTSTYLE AUTO
-;
-ALTER TABLE global_pl.testsp owner to base_admin;
-
-
--- global_pl.job_history definition
-
--- Drop table
-
--- DROP TABLE global_pl.job_history;
-
---DROP TABLE global_pl.job_history;
-CREATE TABLE IF NOT EXISTS global_pl.job_history
-(
-	run_id INTEGER NOT NULL  ENCODE az64
-	,job_id INTEGER   ENCODE az64
-	,job_name VARCHAR(100)   ENCODE lzo
-	,table_name VARCHAR(100)   ENCODE lzo
-	,run_date VARCHAR(100)   ENCODE lzo
-	,run_seq INTEGER   ENCODE az64
-	,job_status VARCHAR(100)   ENCODE lzo
-	,etl_crte_user VARCHAR(100)   ENCODE lzo
-	,etl_crte_ts DATE   ENCODE az64
-	,etl_updt_user VARCHAR(100)   ENCODE lzo
-	,etl_updt_ts DATE   ENCODE az64
-	,PRIMARY KEY (run_id)
-)
-DISTSTYLE KEY
- DISTKEY (run_id)
-;
-ALTER TABLE global_pl.job_history owner to hcloperators;
-
--- Table Triggers
-
-CREATE CONSTRAINT TRIGGER "RI_ConstraintTrigger_664872" AFTER
-INSERT
-    OR
-UPDATE
-    ON
-    global_pl.job_history
-FROM
-    global_pl.job_master NOT DEFERRABLE INITIALLY IMMEDIATE FOR EACH ROW EXECUTE PROCEDURE "RI_FKey_check_ins"('job_history_job_id_fkey',
-    'job_history',
-    'job_master',
-    'UNSPECIFIED',
-    'job_id',
-    'job_id');
+CREATE SCHEMA dw;
+
+CREATE TABLE dw.dim_business_unit ( 
+	business_unit_key    bigint DEFAULT "identity" NOT NULL  ENCODE az64,
+	bar_entity           varchar(20)    ENCODE lzo,
+	bar_entity_description varchar(200)    ENCODE lzo,
+	geography            varchar(100)    ENCODE lzo,
+	region               varchar(30)    ENCODE lzo,
+	subregion            varchar(30)    ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	audit_loadts         date  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_currency ( 
+	currency_cd          varchar(20)  NOT NULL  ENCODE lzo,
+	currency_format      varchar(20)    ENCODE lzo,
+	currency_sort        integer    ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_customer ( 
+	customer_key         bigint DEFAULT "identity" NOT NULL  ENCODE az64,
+	customer_id          varchar(200)    ENCODE lzo,
+	soldto_number        varchar(50)    ENCODE lzo,
+	shipto_number        varchar(50)    ENCODE lzo,
+	soldto_name          varchar(100)    ENCODE lzo,
+	shipto_name          varchar(100)    ENCODE lzo,
+	base_customer        varchar(50)    ENCODE lzo,
+	base_customer_desc   varchar(100)    ENCODE lzo,
+	level01_bar          varchar(100)    ENCODE lzo,
+	level02_bar          varchar(100)    ENCODE lzo,
+	level03_bar          varchar(100)    ENCODE lzo,
+	level04_bar          varchar(100)    ENCODE lzo,
+	level05_bar          varchar(100)    ENCODE lzo,
+	level06_bar          varchar(100)    ENCODE lzo,
+	level07_bar          varchar(100)    ENCODE lzo,
+	level08_bar          varchar(100)    ENCODE lzo,
+	level09_bar          varchar(100)    ENCODE lzo,
+	level10_bar          varchar(100)    ENCODE lzo,
+	level11_bar          varchar(100)    ENCODE lzo,
+	membertype           varchar(10)    ENCODE lzo,
+	generation           integer    ENCODE az64,
+	ragged_level01_bar   varchar(100)    ENCODE lzo,
+	ragged_level02_bar   varchar(100)    ENCODE lzo,
+	ragged_level03_bar   varchar(100)    ENCODE lzo,
+	ragged_level04_bar   varchar(100)    ENCODE lzo,
+	ragged_level05_bar   varchar(100)    ENCODE lzo,
+	ragged_level06_bar   varchar(100)    ENCODE lzo,
+	ragged_level07_bar   varchar(100)    ENCODE lzo,
+	ragged_level08_bar   varchar(100)    ENCODE lzo,
+	ragged_level09_bar   varchar(100)    ENCODE lzo,
+	ragged_level10_bar   varchar(100)    ENCODE lzo,
+	ragged_level11_bar   varchar(100)    ENCODE lzo,
+	demand_group         varchar(100)    ENCODE lzo,
+	a2                   varchar(100)    ENCODE lzo,
+	a1                   varchar(100)    ENCODE lzo,
+	a2_desc              varchar(100)    ENCODE lzo,
+	a1_desc              varchar(100)    ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64,
+	level01_commercial   varchar(100)    ENCODE lzo,
+	level02_commercial   varchar(100)    ENCODE lzo,
+	level03_commercial   varchar(100)    ENCODE lzo,
+	level04_commercial   varchar(100)    ENCODE lzo,
+	level05_commercial   varchar(100)    ENCODE lzo,
+	level06_commercial   varchar(100)    ENCODE lzo,
+	hierarchy_b_id       varchar(100)    ENCODE lzo,
+	hierarchy_b_desc     varchar(100)    ENCODE lzo,
+	hierarchy_c_id       varchar(100)    ENCODE lzo,
+	hierarchy_c_desc     varchar(100)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_customer_restatement ( 
+	soldto_number        varchar(50)    ENCODE lzo,
+	base_customer        varchar(50)    ENCODE lzo,
+	base_customer_desc   varchar(100)    ENCODE lzo,
+	level01_bar          varchar(100)    ENCODE lzo,
+	level02_bar          varchar(100)    ENCODE lzo,
+	level03_bar          varchar(100)    ENCODE lzo,
+	level04_bar          varchar(100)    ENCODE lzo,
+	level05_bar          varchar(100)    ENCODE lzo,
+	level06_bar          varchar(100)    ENCODE lzo,
+	level07_bar          varchar(100)    ENCODE lzo,
+	level08_bar          varchar(100)    ENCODE lzo,
+	level09_bar          varchar(100)    ENCODE lzo,
+	level10_bar          varchar(100)    ENCODE lzo,
+	level11_bar          varchar(100)    ENCODE lzo,
+	demand_group         varchar(100)    ENCODE lzo,
+	a2                   varchar(100)    ENCODE lzo,
+	a1                   varchar(100)    ENCODE lzo,
+	a2_desc              varchar(100)    ENCODE lzo,
+	a1_desc              varchar(100)    ENCODE lzo,
+	level01_commercial   varchar(100)    ENCODE lzo,
+	level02_commercial   varchar(100)    ENCODE lzo,
+	level03_commercial   varchar(100)    ENCODE lzo,
+	level04_commercial   varchar(100)    ENCODE lzo,
+	level05_commercial   varchar(100)    ENCODE lzo,
+	level06_commercial   varchar(100)    ENCODE lzo,
+	hierarchy_b_id       varchar(100)    ENCODE lzo,
+	hierarchy_b_desc     varchar(100)    ENCODE lzo,
+	hierarchy_c_id       varchar(100)    ENCODE lzo,
+	hierarchy_c_desc     varchar(100)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_dataprocessing_outcome ( 
+	dataprocessing_outcome_key bigint    ENCODE az64,
+	dataprocessing_outcome_id integer    ENCODE az64,
+	dataprocessing_outcome_desc varchar(200)    ENCODE lzo,
+	dataprocessing_phase varchar(10)    ENCODE lzo,
+	start_date           date    ENCODE az64,
+	end_date             date    ENCODE az64,
+	audit_loadts         timestamp    ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_dataprocessing_rule ( 
+	data_processing_ruleid integer  NOT NULL  ENCODE az64,
+	soldtoflag           varchar(1)    ENCODE lzo,
+	skuflag              varchar(1)    ENCODE lzo,
+	barcustflag          varchar(1)    ENCODE lzo,
+	barproductflag       varchar(1)    ENCODE lzo,
+	barbrandflag         varchar(1)    ENCODE lzo,
+	dataprocessing_group varchar(200)    ENCODE lzo,
+	dataprocessing_rule_description varchar(400)    ENCODE lzo,
+	dataprocessing_rule_steps varchar(500)    ENCODE lzo,
+	audit_loadts         date  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_date ( 
+	dy_id                integer    ENCODE az64,
+	dy_dte               timestamp    ENCODE az64,
+	absolute_dy_nbr      integer    ENCODE az64,
+	absolute_wk_nbr      integer    ENCODE az64,
+	absolute_mth_nbr     integer    ENCODE az64,
+	absolute_qtr_nbr     integer    ENCODE az64,
+	dy_in_wk_nbr         integer    ENCODE az64,
+	dy_in_wk_name        varchar(200)    ENCODE lzo,
+	julian_dy_nbr        integer    ENCODE az64,
+	clndr_wk_nbr         varchar(200)    ENCODE lzo,
+	clndr_wk_id          varchar(200)    ENCODE lzo,
+	clndr_mth_nbr        integer    ENCODE az64,
+	clndr_mth_id         varchar(200)    ENCODE lzo,
+	clndr_mth_name       varchar(200)    ENCODE lzo,
+	clndr_qtr_nbr        integer    ENCODE az64,
+	clndr_qtr_id         varchar(200)    ENCODE lzo,
+	clndr_qtr_name       varchar(200)    ENCODE lzo,
+	clndr_yr_id          integer    ENCODE az64,
+	clndr_dy_in_mth_nbr  integer    ENCODE az64,
+	is_first_dy_in_clndr_mth_flag varchar(1)    ENCODE lzo,
+	is_last_dy_in_clndr_mth_flag varchar(1)    ENCODE lzo,
+	wk_begin_dte         timestamp    ENCODE az64,
+	wk_end_dte           timestamp    ENCODE az64,
+	fmth_begin_dte       timestamp    ENCODE az64,
+	fmth_end_dte         timestamp    ENCODE az64,
+	fqtr_begin_dte       timestamp    ENCODE az64,
+	fqtr_end_dte         timestamp    ENCODE az64,
+	fyr_begin_dte        timestamp    ENCODE az64,
+	fyr_end_dte          timestamp    ENCODE az64,
+	fwk_nbr              integer    ENCODE az64,
+	fwk_id               integer    ENCODE az64,
+	fwk_cd               varchar(200)    ENCODE lzo,
+	fmth_nbr             integer    ENCODE az64,
+	fmth_id              integer    ENCODE az64,
+	fmth_cd              varchar(200)    ENCODE lzo,
+	fmth_name            varchar(200)    ENCODE lzo,
+	fmth_short_name      varchar(200)    ENCODE lzo,
+	fqtr_nbr             integer    ENCODE az64,
+	fqtr_id              integer    ENCODE az64,
+	fqtr_cd              varchar(200)    ENCODE lzo,
+	fqtr_name            varchar(200)    ENCODE lzo,
+	fyr_id               integer    ENCODE az64,
+	fdy_in_mth_nbr       integer    ENCODE az64,
+	fscl_days_remaining_in_mth integer    ENCODE az64,
+	fdy_in_qtr_nbr       integer    ENCODE az64,
+	fscl_days_remaining_in_qtr integer    ENCODE az64,
+	fdy_in_yr_nbr        integer    ENCODE az64,
+	fscl_days_remaining_in_yr integer    ENCODE az64,
+	fwk_in_mth_nbr       integer    ENCODE az64,
+	fwk_in_qtr           integer    ENCODE az64,
+	is_wk_dy_flag        varchar(1)    ENCODE lzo,
+	is_weekend_flag      varchar(1)    ENCODE lzo,
+	is_first_dy_of_fwk_flag varchar(1)    ENCODE lzo,
+	is_last_dy_of_fwk_flag varchar(1)    ENCODE lzo,
+	is_first_dy_of_fmth_flag varchar(1)    ENCODE lzo,
+	is_last_dy_of_fmth_flag varchar(1)    ENCODE lzo,
+	is_first_dy_of_fqtr_flag varchar(1)    ENCODE lzo,
+	is_last_dy_of_fqtr_flag varchar(1)    ENCODE lzo,
+	is_first_dy_of_fyr_flag varchar(1)    ENCODE lzo,
+	is_last_dy_of_fyr_flag varchar(1)    ENCODE lzo,
+	season_name          varchar(200)    ENCODE lzo,
+	holiday_name         varchar(200)    ENCODE lzo,
+	holiday_season_name  varchar(200)    ENCODE lzo,
+	holiday_observed_name varchar(200)    ENCODE lzo,
+	special_event_name   varchar(200)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_product ( 
+	product_key          bigint DEFAULT "identity" NOT NULL  ENCODE az64,
+	product_id           varchar(200)    ENCODE lzo,
+	material             varchar(100)    ENCODE lzo,
+	bar_product          varchar(100)    ENCODE lzo,
+	sku                  varchar(200)    ENCODE lzo,
+	product_brand        varchar(100)    ENCODE lzo,
+	portfolio            varchar(100)    ENCODE lzo,
+	portfolio_desc       varchar(200)    ENCODE lzo,
+	member_type          varchar(50)    ENCODE lzo,
+	generation           integer    ENCODE az64,
+	level01_bar          varchar(100)    ENCODE lzo,
+	level02_bar          varchar(100)    ENCODE lzo,
+	level03_bar          varchar(100)    ENCODE lzo,
+	level04_bar          varchar(100)    ENCODE lzo,
+	level05_bar          varchar(100)    ENCODE lzo,
+	level06_bar          varchar(100)    ENCODE lzo,
+	level07_bar          varchar(100)    ENCODE lzo,
+	level08_bar          varchar(100)    ENCODE lzo,
+	level09_bar          varchar(100)    ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64,
+	gpp_division_code    varchar(10)    ENCODE lzo,
+	prd_comm_level01_gts varchar(100)    ENCODE lzo,
+	prd_comm_level02_super_bu varchar(100)    ENCODE lzo,
+	prd_comm_level03_subcategory varchar(100)    ENCODE lzo,
+	prd_comm_level04_category varchar(100)    ENCODE lzo,
+	prd_comm_level05_gpp_portfolio varchar(100)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_product_restatement ( 
+	material_key         bigint DEFAULT "identity" NOT NULL  ENCODE az64,
+	material             varchar(30)  NOT NULL  ENCODE lzo,
+	portfolio            varchar(100)  NOT NULL  ENCODE lzo,
+	portfolio_desc       varchar(200)    ENCODE lzo,
+	bar_product          varchar(100)    ENCODE lzo,
+	bar_product_desc     varchar(200)    ENCODE lzo,
+	member_type          varchar(50)    ENCODE lzo,
+	generation           integer    ENCODE az64,
+	level01_bar          varchar(100)    ENCODE lzo,
+	level02_bar          varchar(100)    ENCODE lzo,
+	level03_bar          varchar(100)    ENCODE lzo,
+	level04_bar          varchar(100)    ENCODE lzo,
+	level05_bar          varchar(100)    ENCODE lzo,
+	level06_bar          varchar(100)    ENCODE lzo,
+	level07_bar          varchar(100)    ENCODE lzo,
+	level08_bar          varchar(100)    ENCODE lzo,
+	level09_bar          varchar(100)    ENCODE lzo,
+	start_date           date  NOT NULL  ENCODE az64,
+	end_date             date  NOT NULL  ENCODE az64,
+	audit_loadts         timestamp  NOT NULL  ENCODE az64
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_scenario ( 
+	scenario_id          integer  NOT NULL  ENCODE az64,
+	scenario             varchar(20)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_source_system ( 
+	source_system_id     integer    ENCODE az64,
+	source_system        varchar(20)    ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.dim_transactional_attributes ( 
+	dim_transactional_attributes_id varchar(300)  NOT NULL  ENCODE lzo,
+	pcr                  varchar(300)  NOT NULL  ENCODE lzo
+ )   DISTSTYLE ALL;
+
+CREATE TABLE dw.fact_pnl_commercial ( 
+	fact_pnl_commercial_id bigint DEFAULT "identity" NOT NULL  ENCODE az64,
+	org_tranagg_id       bigint    ENCODE az64,
+	org_dataprocessing_ruleid integer    ENCODE az64,
+	mapped_dataprocessing_ruleid integer    ENCODE az64,
+	dataprocessing_outcome_key integer    ENCODE az64,
+	bar_acct             varchar(6)    ENCODE lzo,
+	bar_currtype         varchar(6)    ENCODE lzo,
+	posting_week_enddate date    ENCODE RAW,
+	fiscal_month_id      integer    ENCODE az64,
+	scenario_id          integer    ENCODE az64,
+	source_system_id     integer    ENCODE az64,
+	business_unit_key    bigint    ENCODE az64,
+	customer_key         bigint    ENCODE az64,
+	product_key          bigint    ENCODE az64,
+	org_bar_custno       varchar(30)    ENCODE lzo,
+	org_bar_product      varchar(30)    ENCODE lzo,
+	org_bar_brand        varchar(30)    ENCODE lzo,
+	mapped_bar_custno    varchar(30)    ENCODE lzo,
+	mapped_bar_product   varchar(30)    ENCODE lzo,
+	mapped_bar_brand     varchar(30)    ENCODE lzo,
+	org_soldtocust       varchar(30)    ENCODE lzo,
+	org_shiptocust       varchar(30)    ENCODE lzo,
+	org_material         varchar(30)    ENCODE lzo,
+	alloc_soldtocust     varchar(30)    ENCODE lzo,
+	alloc_shiptocust     varchar(30)    ENCODE lzo,
+	alloc_material       varchar(30)    ENCODE lzo,
+	alloc_bar_product    varchar(30)    ENCODE lzo,
+	amt                  decimal(38,8)    ENCODE az64,
+	tran_volume          decimal(19,8)    ENCODE az64,
+	sales_volume         decimal(38,8)    ENCODE az64,
+	uom                  varchar(15)    ENCODE lzo,
+	sales_invoiced       decimal(38,8)    ENCODE az64,
+	sales_freight_income decimal(38,8)    ENCODE az64,
+	product_sales_export decimal(38,8)    ENCODE az64,
+	product_sales_domenstic_total decimal(38,8)    ENCODE az64,
+	fob_invoice_sale     decimal(38,8)    ENCODE az64,
+	rental_sales         decimal(38,8)    ENCODE az64,
+	destroy_in_field     decimal(38,8)    ENCODE az64,
+	product_sales        decimal(38,8)    ENCODE az64,
+	billable_service_revenue decimal(38,8)    ENCODE az64,
+	contract_service_revenue decimal(38,8)    ENCODE az64,
+	install_revenue      decimal(38,8)    ENCODE az64,
+	service_and_installation_sales decimal(38,8)    ENCODE az64,
+	franchise_revenue    decimal(38,8)    ENCODE az64,
+	royalty_revenue      decimal(38,8)    ENCODE az64,
+	other_sales_revenue_total decimal(38,8)    ENCODE az64,
+	returns_domestic     decimal(38,8)    ENCODE az64,
+	returns_export       decimal(38,8)    ENCODE az64,
+	sales_returns        decimal(38,8)    ENCODE az64,
+	rsa_and_price_adjustments decimal(38,8)    ENCODE az64,
+	allowances_total     decimal(38,8)    ENCODE az64,
+	rebates              decimal(38,8)    ENCODE az64,
+	coop_advertising     decimal(38,8)    ENCODE az64,
+	cashdiscount_domestic decimal(38,8)    ENCODE az64,
+	cashdiscount_export  decimal(38,8)    ENCODE az64,
+	cash_discount_total  decimal(38,8)    ENCODE az64,
+	fillrate_fine        decimal(38,8)    ENCODE az64,
+	fob_deductions       decimal(38,8)    ENCODE az64,
+	discounts_allow_domestic decimal(38,8)    ENCODE az64,
+	discounts_allow_export decimal(38,8)    ENCODE az64,
+	discounts_and_allowexcl_coop_adv decimal(38,8)    ENCODE az64,
+	freight_domestic     decimal(38,8)    ENCODE az64,
+	freight_export       decimal(38,8)    ENCODE az64,
+	sales_freight        decimal(38,8)    ENCODE az64,
+	customer_considerations decimal(38,8)    ENCODE az64,
+	sales_adjustments_other decimal(38,8)    ENCODE az64,
+	sales_deduction_other decimal(38,8)    ENCODE az64,
+	standard_material_cost_domestic decimal(38,8)    ENCODE az64,
+	standard_material_cost_fob decimal(38,8)    ENCODE az64,
+	standard_material_cost_export decimal(38,8)    ENCODE az64,
+	standard_material_cost_serv_install decimal(38,8)    ENCODE az64,
+	standard_material_cost_serv_install_3p decimal(38,8)    ENCODE az64,
+	standard_material_cost decimal(38,8)    ENCODE az64,
+	cos_trd_domestic_labor decimal(38,8)    ENCODE az64,
+	cos_trd_export_labor decimal(38,8)    ENCODE az64,
+	std_labor_cost_manuf decimal(38,8)    ENCODE az64,
+	cos_service          decimal(38,8)    ENCODE az64,
+	cos_monitoring       decimal(38,8)    ENCODE az64,
+	cos_installations    decimal(38,8)    ENCODE az64,
+	std_labor_cos_serv_install decimal(38,8)    ENCODE az64,
+	std_labor_cos_serv_install_3p decimal(38,8)    ENCODE az64,
+	std_labor_cos        decimal(38,8)    ENCODE az64,
+	std_oh_cos_serv_install decimal(38,8)    ENCODE az64,
+	std_oh_cos_serv_install_3p decimal(38,8)    ENCODE az64,
+	std_oh_cos_export    decimal(38,8)    ENCODE az64,
+	std_oh_cos           decimal(38,8)    ENCODE az64,
+	free_goods_cos       decimal(38,8)    ENCODE az64,
+	targeted_funds_cos   decimal(38,8)    ENCODE az64,
+	free_goods_total     decimal(38,8)    ENCODE az64,
+	cos_freight_outbound decimal(38,8)    ENCODE az64,
+	merchandising_cos    decimal(38,8)    ENCODE az64,
+	rental_cos           decimal(38,8)    ENCODE az64,
+	gross_sales          decimal(38,8)    ENCODE az64,
+	allowances           decimal(38,8)    ENCODE az64,
+	invoice_sales        decimal(38,8)    ENCODE az64,
+	sales_deduction      decimal(38,8)    ENCODE az64,
+	net_sales            decimal(38,8)    ENCODE az64,
+	std_cos              decimal(38,8)    ENCODE az64,
+	total_cos            decimal(38,8)    ENCODE az64,
+	std_gross_margin     decimal(38,8)    ENCODE az64,
+	audit_loadts         date  NOT NULL  ENCODE az64,
+	dim_transactional_attributes_id varchar(300)    ENCODE lzo
+ ) DISTKEY (customer_key) SORTKEY (posting_week_enddate) DISTSTYLE KEY;
+
+CREATE TABLE dw.fact_pnl_commercial_orig ( 
+	org_tranagg_id       bigint    ENCODE az64,
+	posting_week_enddate date    ENCODE az64,
+	fiscal_month_id      integer    ENCODE az64,
+	bar_currtype         varchar(6)    ENCODE lzo,
+	amt                  decimal(38,8)    ENCODE az64,
+	amt_usd              decimal(38,8)    ENCODE az64,
+	tran_volume          decimal(19,8)    ENCODE az64,
+	sales_volume         decimal(38,8)    ENCODE az64,
+	uom                  varchar(10)    ENCODE lzo
+ )   DISTSTYLE AUTO;
+
+CREATE TABLE dw.fact_pnl_commercial_stacked ( 
+	fact_pnl_commercial_stacked_id bigint DEFAULT "identity" NOT NULL  ENCODE az64,
+	org_tranagg_id       bigint    ENCODE az64,
+	org_dataprocessing_ruleid integer    ENCODE az64,
+	mapped_dataprocessing_ruleid integer    ENCODE az64,
+	dataprocessing_outcome_key integer    ENCODE az64,
+	bar_acct             varchar(6)    ENCODE lzo,
+	bar_currtype         varchar(6)    ENCODE lzo,
+	posting_week_enddate date    ENCODE RAW,
+	fiscal_month_id      integer    ENCODE az64,
+	scenario_id          integer    ENCODE az64,
+	source_system_id     integer    ENCODE az64,
+	business_unit_key    bigint    ENCODE az64,
+	customer_key         bigint    ENCODE az64,
+	product_key          bigint    ENCODE az64,
+	org_bar_custno       varchar(50)    ENCODE lzo,
+	org_bar_product      varchar(50)    ENCODE lzo,
+	org_bar_brand        varchar(50)    ENCODE lzo,
+	mapped_bar_custno    varchar(50)    ENCODE lzo,
+	mapped_bar_product   varchar(50)    ENCODE lzo,
+	mapped_bar_brand     varchar(50)    ENCODE lzo,
+	org_soldtocust       varchar(50)    ENCODE lzo,
+	org_shiptocust       varchar(50)    ENCODE lzo,
+	org_material         varchar(50)    ENCODE lzo,
+	alloc_soldtocust     varchar(50)    ENCODE lzo,
+	alloc_shiptocust     varchar(50)    ENCODE lzo,
+	alloc_material       varchar(50)    ENCODE lzo,
+	alloc_bar_product    varchar(50)    ENCODE lzo,
+	allocated_flag       boolean    ENCODE RAW,
+	amt                  decimal(38,8)    ENCODE az64,
+	amt_usd              decimal(38,8)    ENCODE az64,
+	tran_volume          decimal(19,8)    ENCODE az64,
+	sales_volume         decimal(38,8)    ENCODE az64,
+	uom                  varchar(10)    ENCODE lzo,
+	dim_transactional_attributes_id varchar(300)    ENCODE lzo
+ ) DISTKEY (product_key) SORTKEY (posting_week_enddate) DISTSTYLE KEY;
+
+CREATE TABLE dw.fact_pnl_ocos ( 
+	fact_pnl_ocos_id     bigint DEFAULT "identity" NOT NULL  ENCODE az64,
+	org_tranagg_id       bigint    ENCODE az64,
+	dataprocessing_ruleid integer    ENCODE az64,
+	dataprocessing_outcome_key integer    ENCODE az64,
+	bar_acct             varchar(30)    ENCODE lzo,
+	bar_currtype         varchar(6)    ENCODE lzo,
+	posting_week_enddate date    ENCODE RAW,
+	fiscal_month_id      integer    ENCODE az64,
+	scenario_id          integer    ENCODE az64,
+	source_system_id     integer    ENCODE az64,
+	business_unit_key    bigint    ENCODE az64,
+	customer_key         bigint    ENCODE az64,
+	product_key          bigint    ENCODE az64,
+	soldtocust           varchar(30)    ENCODE lzo,
+	shiptocust           varchar(30)    ENCODE lzo,
+	bar_custno           varchar(30)    ENCODE lzo,
+	material             varchar(30)    ENCODE lzo,
+	bar_product          varchar(30)    ENCODE lzo,
+	bar_brand            varchar(30)    ENCODE lzo,
+	cost_pool            varchar(10)    ENCODE lzo,
+	super_sbu            varchar(100)    ENCODE lzo,
+	amt                  decimal(38,8)    ENCODE az64,
+	amt_usd              decimal(38,8)    ENCODE az64,
+	reported_inventory_adjustment decimal(38,8)    ENCODE az64,
+	reported_warranty_cost decimal(38,8)    ENCODE az64,
+	reported_duty_tariffs decimal(38,8)    ENCODE az64,
+	reported_freight     decimal(38,8)    ENCODE az64,
+	reported_ppv         decimal(38,8)    ENCODE az64,
+	reported_labor_overhead decimal(38,8)    ENCODE az64,
+	tran_volume          decimal(19,8)    ENCODE az64,
+	sales_volume         decimal(38,8)    ENCODE az64,
+	uom                  varchar(10)    ENCODE lzo,
+	audit_loadts         date  NOT NULL  ENCODE az64
+ ) DISTKEY (customer_key) SORTKEY (posting_week_enddate) DISTSTYLE KEY;
+
+CREATE TABLE dw.fact_pnl_ocos_stacked ( 
+	fact_pnl_ocos_stacked_id bigint DEFAULT "identity" NOT NULL  ENCODE az64,
+	org_tranagg_id       bigint    ENCODE az64,
+	dataprocessing_ruleid integer    ENCODE az64,
+	dataprocessing_outcome_key integer    ENCODE az64,
+	bar_acct             varchar(30)    ENCODE lzo,
+	bar_currtype         varchar(6)    ENCODE lzo,
+	posting_week_enddate date    ENCODE RAW,
+	fiscal_month_id      integer    ENCODE az64,
+	scenario_id          integer    ENCODE az64,
+	source_system_id     integer    ENCODE az64,
+	business_unit_key    bigint    ENCODE az64,
+	customer_key         bigint    ENCODE az64,
+	product_key          bigint    ENCODE az64,
+	soldtocust           varchar(30)    ENCODE lzo,
+	shiptocust           varchar(30)    ENCODE lzo,
+	bar_custno           varchar(30)    ENCODE lzo,
+	cost_pool            varchar(10)    ENCODE lzo,
+	super_sbu            varchar(100)    ENCODE lzo,
+	material             varchar(30)    ENCODE lzo,
+	bar_product          varchar(30)    ENCODE lzo,
+	bar_brand            varchar(30)    ENCODE lzo,
+	amt                  decimal(38,8)    ENCODE az64,
+	amt_usd              decimal(38,8)    ENCODE az64,
+	tran_volume          decimal(19,8)    ENCODE az64,
+	sales_volume         decimal(38,8)    ENCODE az64,
+	uom                  varchar(10)    ENCODE lzo
+ ) DISTKEY (customer_key) SORTKEY (posting_week_enddate) DISTSTYLE KEY;

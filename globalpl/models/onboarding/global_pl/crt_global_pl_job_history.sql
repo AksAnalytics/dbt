@@ -15,7 +15,8 @@
 	,etl_updt_ts DATE   
 	,PRIMARY KEY (run_id)
 )
-"
+
+	"
 }%} 
 
 {{ config(materialized = "ephemeral") }}

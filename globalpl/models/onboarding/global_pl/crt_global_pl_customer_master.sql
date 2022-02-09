@@ -26,14 +26,7 @@
 	,etl_crte_ts VARCHAR(50)   
 	,etl_crte_user VARCHAR(50)   
 	,PRIMARY KEY (erp_customer_number)
-)
-DISTSTYLE ALL
- SORTKEY (
-	erp_customer_number
-	, erp_customer_name
-	)
-;
-ALTER TABLE global_pl.customer_master owner to hcloperators; 
+) 
 	"
 }%} 
 

@@ -13,7 +13,7 @@
 	,etl_updt_ts DATE   
 	,PRIMARY KEY (job_id)
 )
-"
+	"
 }%} 
 
 {{ config(materialized = "ephemeral") }}

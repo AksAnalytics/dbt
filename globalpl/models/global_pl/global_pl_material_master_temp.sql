@@ -1,0 +1,132 @@
+{{config(
+    materialized = 'table'
+    schema = 'global_pl'
+)}}
+
+WITH c11_0customer_attr_current AS (
+
+    SELECT 
+      MATNR, NULL, ATTYP, BEHVO, BFLME, 
+      BISMT, NULL, BREIT, BRGEW, BSTME, 
+      BWSCL, BWVOR, CADKZ, CMETH, COMPL, 
+      CUOBF, DATAB::date, EAN11, EKWSL, 
+      ERGEI, ERGEW, ERVOE, ERVOL, GEWEI, 
+      GROES, HOEHE, MATKL, MBRSH, MTART, 
+      NTGEW, PRDHA, SPART, STOFF, TRAGR, 
+      VHART, WRKST, 
+      'C11' AS ERP_SOURCE,
+      'etl_user' AS ETL_CRTE_USER,
+      to_date(GETDATE(),'yyyyMMdd') AS ETL_CRTE_TS
+    FROM bods.c11_0material_attr_current
+),
+
+e03_0material_attr_current AS (
+
+    SELECT 
+      MATNR, NULL, ATTYP, BEHVO, BFLME, 
+      BISMT, NULL, BREIT, BRGEW, BSTME, 
+      BWSCL, BWVOR, CADKZ, CMETH, COMPL, 
+      CUOBF, DATAB::date, EAN11, EKWSL, 
+      ERGEI, ERGEW, ERVOE, ERVOL, GEWEI, 
+      GROES, HOEHE, MATKL, MBRSH, MTART, 
+      NTGEW, PRDHA, SPART, STOFF, TRAGR, 
+      VHART, WRKST, 
+      'E03' AS ERP_SOURCE,
+      'etl_user' AS ETL_CRTE_USER,
+      to_date(GETDATE(),'yyyyMMdd') AS ETL_CRTE_TS
+    FROM bods.e03_0material_attr_current
+),
+
+extr_p10_0material_attr_current AS (
+
+    SELECT 
+      MATNR, NULL, ATTYP, BEHVO, BFLME, 
+      BISMT, NULL, BREIT, BRGEW, BSTME, 
+      BWSCL, BWVOR, CADKZ, CMETH, COMPL, 
+      CUOBF, DATAB::date, EAN11, EKWSL, 
+      ERGEI, ERGEW, ERVOE, ERVOL, GEWEI, 
+      GROES, HOEHE, MATKL, MBRSH, MTART, 
+      NTGEW, PRDHA, SPART, STOFF, TRAGR, 
+      VHART, WRKST, 
+      'P10' AS ERP_SOURCE,
+      'etl_user' AS ETL_CRTE_USER,
+      to_date(GETDATE(),'yyyyMMdd') AS ETL_CRTE_TS
+    FROM bods.extr_p10_0material_attr_current
+),
+
+extr_shp_material_attr_current AS (
+
+    SELECT 
+      MATNR, NULL, ATTYP, BEHVO, BFLME, 
+      BISMT, NULL, BREIT, BRGEW, BSTME, 
+      BWSCL, BWVOR, CADKZ, CMETH, COMPL, 
+      CUOBF, DATAB::date, EAN11, EKWSL, 
+      ERGEI, ERGEW, ERVOE, ERVOL, GEWEI, 
+      GROES, HOEHE, MATKL, MBRSH, MTART, 
+      NTGEW, PRDHA, SPART, STOFF, TRAGR, 
+      VHART, WRKST, 
+      'SHP' AS ERP_SOURCE,
+      'etl_user' AS ETL_CRTE_USER,
+      to_date(GETDATE(),'yyyyMMdd') AS ETL_CRTE_TS
+    FROM bods.extr_shp_material_attr_current
+),
+	
+union_table AS (
+
+    SELECT * FROM c11_0customer_attr_current
+    UNION ALL
+    SELECT * FROM e03_0material_attr_current
+    UNION ALL
+    SELECT * FROM extr_p10_0material_attr_current
+    UNION ALL
+    SELECT * FROM extr_shp_material_attr_current
+    UNION ALL
+    LIMIT 1000
+),
+
+final AS (
+
+    SELECT
+      MATNR AS ERP_MATERIAL_NUMBER, 
+      NULL AS ERP_MATERIAL_DESCRIPTION, 
+      ATTYP AS ERP_MATERIAL_CATEGORY, 
+      BEHVO AS ERP_CONTAINER_REQUIREMENTS, 
+      BFLME AS ERP_GENERIC_MATERIAL_WITH_LOGISTICAL_VARIANTS, 
+      BISMT AS ERP_OLD_MATERIAL_NUMBER, 
+      NULL AS ERP_BRAND, 
+      BREIT AS ERP_WIDTH, 
+      BRGEW AS ERP_GROSS_WEIGHT, 
+      BSTME AS ERP_PURCHASE_ORDER_UoM, 
+      BWSCL AS ERP_SOURCE_OF_SUPPLY, 
+      BWVOR AS ERP_PROCUREMENT_RULE, 
+      CADKZ AS ERP_CAD_INDICATOR, 
+      CMETH AS ERP_QUALITY_CONVERSION_METHOD, 
+      COMPL AS ERP_MATERIAL_COMPLETION_LEVEL, 
+      CUOBF AS ERP_INTERNAL_OBJECT_NUMBER, 
+      DATAB::date AS ERP_VALID_FROM_DATE, 
+      EAN11 AS ERP_EAN_UPC, 
+      EKWSL AS ERP_PURHCASING_VALUE_KEY, 
+      ERGEI AS ERP_UNIT_OF_WEIGHT_PACKAGING, 
+      ERGEW AS ERP_ALLOWED_PACKAGING_WEIGHT, 
+      ERVOE AS ERP_VOLUME_UNIT, 
+      ERVOL AS ERP_ALLOWED_PACKAGING_VOLUME, 
+      GEWEI AS ERP_WEIGHT_UNIT, 
+      GROES AS ERP_SIZE_DIMENSIONS, 
+      HOEHE AS ERP_HEIGHT, 
+      MATKL AS ERP_MATERIAL_GROUP, 
+      MBRSH AS ERP_INDUSTRY_SECTOR, 
+      MTART AS ERP_MATERIAL_TYPE, 
+      NTGEW AS ERP_NET_WEIGHT, 
+      PRDHA AS ERP_PRODUCT_HIERARCHY, 
+      SPART AS ERP_DIVISION, 
+      STOFF AS ERP_HAZARDOUS_MATERIAL_NUMBER, 
+      TRAGR AS ERP_TRANSPORTATION_GROUP, 
+      VHART AS ERP_PACKAGING_MATERIAL_TYPE, 
+      WRKST AS ERP_GLOBAL_PRODUCT_HIERARCHY,     
+      ERP_SOURCE,
+      ETL_CRTE_USER,
+      ETL_CRTE_TS
+    FROM union_table
+)
+
+SELECT * FROM final 

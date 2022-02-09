@@ -78,3 +78,6 @@
 -- dbt run -m tag:validation --full-refresh
 
 -- dbt run -m tag:zone1 tag:zone2 tag:zone3 --full-refresh
+
+---- generate source
+-- dbt run-operation generate_source --args '{"schema_name": "bods", "database_name": "raw"}'

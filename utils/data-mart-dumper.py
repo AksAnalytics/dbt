@@ -17,10 +17,10 @@ import re
 import os
 
 WRITE_LOCATION = os.getcwd()
-TXT_FILE_LOCATION = 'dw_tables.txt'
+TXT_FILE_LOCATION = 'stage_tables.txt'
 
 # Change this to where you want the files to be dumped, otherise they will be dumped in the current working directory
-# WRITE_LOCATION = r'/Users/williamdst/Documents/EON-Files/SBD-DBT-DEMO/dbt-data-marting-framework/umm/models/onboarding/na_pos_dw'
+WRITE_LOCATION = r'/Users/williamdst/Documents/EON-Files/SBD-DBT-DEMO/dbt-data-marting-framework/umm/models/onboarding/stage'
 
 def main() -> None:
     """ Generates a collection of crt_<table_name>.sql files that can be executed in the dbt project"""
@@ -43,6 +43,16 @@ def main() -> None:
     # Extract the compete CREATE TABLE [IF NOT EXISTS] <table_name> (<table definition>)
     complete_extract = re.findall(r'CREATE TABLE (?:\w|\s|\.|\n|\(|,|(?<=\d)\)|\"|(?<=\w)\))+\)', ddl_statements)
     complete_extract = [table_ddl.replace('"', '') for table_ddl in complete_extract]   # Remove quotes around column names
+    complete_extract = [table_ddl.replace('CREATE TABLE', 'CREATE TABLE IF NOT EXISTS')
+                        if 'IF NOT EXISTS' not in table_ddl else table_ddl
+                        for table_ddl in complete_extract]  # All crt models should use CREATE TABLE IF NOT EXISTS
+
+    identity_pattern = ('identity', re.compile(re.escape('default identity'), re.IGNORECASE))   # Swap default identity for identity
+    getdate_pattern = ('current_date', re.compile(re.escape('getdate'), re.IGNORECASE))    # Swap getdate for current_date
+    for replace_tuple in [identity_pattern, getdate_pattern]:
+        complete_extract = [replace_tuple[1].sub(replace_tuple[0], table_ddl) for table_ddl in complete_extract]
+
+
 
     # Extract the <table_name> without the source system prefix.
     table_group = [table.split('CREATE TABLE ') for table in create_table_statements]
@@ -50,6 +60,7 @@ def main() -> None:
     table_names = [table_name.replace('.', '_').replace('IF NOT EXISTS ', '') for table_name in table_names]
 
     assert len(complete_extract) == len(table_names), "Lists are not the same length"
+
 
     # Use the extracts to format the file contents and write to the file.
     for table_ddl, table_name in zip(complete_extract, table_names):
@@ -62,7 +73,7 @@ def main() -> None:
                     '{{% do run_query(table_metadata.table_definition) %}}'.format(table_ddl)
 
         os.chdir(WRITE_LOCATION)
-        file = open(f'crt_{table_name}.sql', 'w')
+        file = open(f'crt_{table_name.strip()}.sql', 'w')
         file.write(file_body)
         file.close()
 

@@ -1,0 +1,134 @@
+
+CREATE OR REPLACE PROCEDURE ref_data.p_build_ref_entity()
+ LANGUAGE plpgsql
+AS $$
+/*
+ * 		call ref_data.p_build_ref_entity();
+ * 		select count(*) from ref_data.entity;
+ * 		grant execute on procedure ref_data.p_build_ref_entity() to group "g-ada-rsabible-sb-ro";
+ * 
+ */
+BEGIN 
+	
+	delete from ref_data.entity;
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2050', 'Accessories - Commercial', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0363', 'Puebla', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2487', 'HTF US FOB_Macau', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2094', 'Ft Mill VAS', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0305', 'Mac HQ - Columbus', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0325', 'InnerSpace', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2093', 'Ft. Mill Manufacturing (US)', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2474', 'Kenilworth', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2058', 'Rialto DC', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2700CE', 'Newell US Central Europe Drop Ship', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0339', 'ZAG US', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0597', 'Mech Tools Asia CDN FOB - Macau', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0242', 'MRO - WWPT Canada', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2700CAD', 'Newell US Canadian Drop Ship', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E6201', 'Powers US', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E6202', 'Powers Canada', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2083', 'Power Tools Adjustment Co', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2072', 'Reynosa Consumer Manufacturing', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2013PTA', 'North Jackson Manufacturing PTA', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0353', 'NA Verticals PlantVar', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0237', 'Stanley Israel Migdal Haemek', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2098', 'MTD Tupelo MFG', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2051', 'North America Distribution', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0166', 'Elco Base', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2746', 'East Longmeadow', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0306', 'Mechanic NHT', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0308', 'Mac Canada', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2057', 'Fort Mill DC', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0595', 'Mech Tools Asia CDN FOB - Chiro', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2107', 'Hermosillo Mfg Plant (Mexico Legal)', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0093', 'Fastening Clinton Plant', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2091', 'NA Power Tools', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2018', 'North America Professional - Adjustment', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2700', 'Irwin Industrial Tool Company', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2743', 'Newell Bandsaw Canada', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0091', 'Fastening East Greenwich', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'GTS_US_Adj', 'GTS US Adjust', 'GTS_NA', 'GTS_US', 'GTS_US_Adj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2096', 'Monterrey Mfg Plant (Mexico Legal)', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2476', 'Stanley Israel Ramat Gavriel', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0521', 'Lista - Holliston', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2478', 'Sedalia DC', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'GTS_US_MFG_OFFSET', 'GTS US Manufacturing Offset', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2020', 'Hampstead', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0023', 'Louisville', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'GTS_CA_Alloc', 'GTS Canada Allocation', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0160', 'Fastening Divisional HQ', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0304', 'Tools US Div Management', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0545', 'Tools US Assortment Packing', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0120', 'Virax US', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2468', 'Kannapolis', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2031', 'Reynosa Professional Manufacturing', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0244', 'WWPT Canada MRO Transfer', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2700MX', 'Newell US Mexico Drop Ship', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2108', 'Hermosillo Mfg Plant (US Legal)', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0598', 'ZAG Israel CDN FOB', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2035', 'BDK US Inc.', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0121', 'Wendeng', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'GTS_NA_Vert_Adj', 'GTS NA Verticals Adj - DO NOT USE', 'GTS_NA', 'GTS_US', 'GTS_NA_Vert_Adj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'GTS_US_Alloc', 'GTS US Allocation', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'GTS_NA_Vert_Alloc', 'GTS NA Verticals Alloc - DO NOT USE', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2036', 'BDC', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2477', 'Right Co II LLC GTS', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0320', 'Proto US', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0241', 'MRO - WWPT US', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0243', 'WWPT US MRO Transfer', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2071', 'GPA - North America Power Tools', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0162', 'Stanley Bostitch Inc', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0006', 'Fastening Pass Thru Company', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2491', 'HTF US FOB_ GH', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2017', 'Charlotte Packaging', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0276', 'Abmast US', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2060', 'Craftsman USD Entity', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2473', 'Waterloo Holdings Inc.', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0314', 'Mac Georgetown', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0522', 'Lista - Burlington', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0523', 'Lista - Ontario Limited', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0326', 'Vidmar', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0626', 'Vidmar US - export sales', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2702', 'Newell US HQ', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2710', 'Newell Bandsaw US', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2700LAG', 'Newell US LAG Drop Ship', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2700AP', 'Newell US APAC Drop Ship', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2095', 'MTD Nogales', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2013', 'North Jackson Manufacturing PTG', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2097', 'Monterrey Mfg Plant (US Legal)', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2472', 'Sedalia', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2032', 'Reynosa Prof Mfg (Mexico Legal)', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0238', 'Stanley Israel Carmiel', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0337', 'The Stanley Works Israel Ltd.', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0379', 'Mechanic Dallas', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2023', 'Mission Manufacturing', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0547', 'Cheraw', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0551', 'New Britain Tape Plant', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0371', 'Mech Xiaolan WFOE (China)', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2006', 'Shelbyville Accessories', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0098', 'Greenfield', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2744', 'Gorham', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2007', 'Tampa Accessories', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2021', 'South Jackson Manufacturing', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2061', 'Dallas DC', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2059', 'North Jackson DC', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2475', 'IDL Licensing', 'GTS_NA', 'GTS_US', 'GTS_US_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'GTS_CA_Adj', 'GTS Canada Adjust', 'GTS_NA', 'GTS_CA', 'GTS_CA_Adj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2111', 'Power Tools Canada', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2110', 'Canadian Adjustment', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0321', 'Mechanic Canada Adj', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0231', 'Tools Canada', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0366', 'Tools Canada Adjustment Co', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0234', 'Mechanics Consumer Canada', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0170', 'Fastening Canada', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2703', 'Newell CA HQ', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2720', 'Newell Industries Canada Inc. A', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2721', 'Newell Industries Canada Inc. B', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0245', 'St. Hyacinthe', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2488', 'GH Canada', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E2460', 'GPA Canada', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+	INSERT INTO ref_data.entity ( name, description, level4, level5, level6 ) VALUES ( 'E0596', 'Mech Tools Asia CDN FOB - Global Holdings', 'GTS_NA', 'GTS_CA', 'GTS_CA_WOAdj' );
+
+end
+$$
+;

@@ -17,10 +17,10 @@ import re
 import os
 
 WRITE_LOCATION = os.getcwd()
-TXT_FILE_LOCATION = 'dw_procedures.txt'
+TXT_FILE_LOCATION = 'stage_procedures.txt'
 
 # Change this to where you want the files to be dumped, otherise they will be dumped in the current working directory
-# WRITE_LOCATION = r'/Users/williamdst/Documents/EON-Files/SBD-DBT-DEMO/dbt-data-marting-framework/umm/models/onboarding/stage'
+WRITE_LOCATION = r'/Users/williamdst/PycharmProjects/EON/SBD-DBT-DEMO/dbt-data-marting-framework/umm/models/stage'
 
 def write_sources_file(ddl_statements: str):
     """Writes the dbt sources.yml file from a Redshift dump

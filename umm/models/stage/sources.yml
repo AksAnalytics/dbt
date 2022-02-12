@@ -1,0 +1,33 @@
+version: 2
+
+sources:
+  - name: bods
+    database: RAW
+    tables:
+      - name: c11_0ec_pca3
+      - name: drm_customer
+      - name: drm_product
+      - name: hfm_vw_hfm_actual_trans
+      - name: lawson_mac_pl_trans
+      - name: p10_0ec_pca_3_trans
+
+  - name: ref_data
+    database: RAW
+    tables:
+      - name: hfmfxrates
+
+  - name: sapc11
+    database: RAW
+    tables:
+      - name: keko
+      - name: keph
+      - name: kna1
+      - name: marm
+      - name: mbew
+      - name: t001
+      - name: t001k
+
+  - name: source_poc
+    database: RAW
+    tables:
+      - name: hfmfxrates

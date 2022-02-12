@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: 2
+    database: RAW
+    tables:
+      - name:  Map material to GPP using mara table - ref_data.sku_gpp_mapping : based off mara
+
+  - name: bods
+    database: RAW
+    tables:
+      - name: c11_0customer_attr
+      - name: drm_customer
+      - name: drm_product
+      - name: extr_lawson_mac_cust
+      - name: extr_lawson_mac_prod
+
+  - name: ref_data
+    database: RAW
+    tables:
+      - name: 2. Map material to GPP using mara table - sku_gpp_mapping : based off mara
+      - name: hfmfxrates
+
+  - name: sapc11
+    database: RAW
+    tables:
+      - name: kna1
+      - name: knvh
+      - name: makt
+
+  - name: sapp10
+    database: RAW
+    tables:
+      - name: kna1
+      - name: knvh
+      - name: makt

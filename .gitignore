@@ -6,6 +6,13 @@
 ##exclude the VScode envrionment folder
 .venv
 
+#### exclude dbt stuu
+target/
+dbt_modules/
+dbt_packages/
+logs/
+
+
 # Node artifact files
 node_modules/
 dist/

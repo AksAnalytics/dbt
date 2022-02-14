@@ -55,7 +55,6 @@
     select {{ target_cols_csv }} from ({{ filtered_sql.sql }})
 {%- endmacro %}
 
-
 {#-- GET_PERIOD_BOUNDARIES #}
 
 {%- macro get_period_boundaries(target_schema, target_table, timestamp_field, start_date, stop_date, period) -%}
@@ -101,6 +100,7 @@
     {% do return(period_boundaries) %}
 {%- endmacro %}
 
+
 {#-- GET_PERIOD_OF_LOAD #}
 
 {%- macro get_period_of_load(period, offset, start_timestamp) -%}
@@ -126,6 +126,7 @@
 
     {% do return(period_of_load) %}
 {%- endmacro -%}
+
 
 {#-- OTHER MACROS #}
 

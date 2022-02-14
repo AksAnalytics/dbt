@@ -4,17 +4,17 @@ sources:
   - name: bods
     database: RAW
     tables:
-      - name: c11_0ec_pca3
+      # - name: c11_0ec_pca3  ## duplicate from models/stage/sources.yml
       - name: c11_0material_attr
       - name: drm_entity
-      - name: hfm_vw_hfm_actual_trans
-      - name: lawson_mac_pl_trans
-      - name: p10_0ec_pca_3_trans
+      # - name: hfm_vw_hfm_actual_trans  ## duplicate from models/stage/sources.yml
+      # - name: lawson_mac_pl_trans  ## duplicate from models/stage/sources.yml
+      # - name: p10_0ec_pca_3_trans  ## duplicate from models/stage/sources.yml
 
   - name: ref_data
     database: RAW
     tables:
-      - name: hfmfxrates
+      # - name: hfmfxrates  ## duplicate from models/stage/sources.yml
       - name: p_build_hfmfxrates
 
   - name: sapc11

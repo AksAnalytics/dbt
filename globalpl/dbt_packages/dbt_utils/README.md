@@ -1,7 +1,7 @@
-This [dbt](https://github.com/dbt-labs/dbt) package contains macros that can be (re)used across dbt projects.
+This [dbt](https://github.com/fishtown-analytics/dbt) package contains macros that can be (re)used across dbt projects.
 
 ## Installation Instructions
-Check [dbt Hub](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) for the latest installation instructions, or [read the docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
+Check [dbt Hub](https://hub.getdbt.com/fishtown-analytics/dbt_utils/latest/) for the latest installation instructions, or [read the docs](https://docs.getdbt.com/docs/package-management) for more information on installing packages.
 
 ----
 ## Contents
@@ -12,15 +12,13 @@ Check [dbt Hub](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) for the lates
   - [expression_is_true](#expression_is_true-source)
   - [recency](#recency-source)
   - [at_least_one](#at_least_one-source)
-  - [not_constant](#not_constant-source)
+  - [not_constant](#not_constant)
   - [cardinality_equality](#cardinality_equality-source)
   - [unique_where](#unique_where-source)
   - [not_null_where](#not_null_where-source)
-  - [not_null_proportion](#not_null_proportion-source)
   - [relationships_where](#relationships_where-source)
   - [mutually_exclusive_ranges](#mutually_exclusive_ranges-source)
   - [unique_combination_of_columns](#unique_combination_of_columns-source)
-  - [accepted_range](#accepted_range-source)
 
 **[Macros](#macros)**
 
@@ -49,13 +47,13 @@ Check [dbt Hub](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) for the lates
 
 - [Cross-database macros](#cross-database-macros):
     - [current_timestamp](#current_timestamp-source)
-    - [dateadd](#dateadd-source)
-    - [datediff](#datediff-source)
+    - [dateadd](#date_add-source)
+    - [datediff](#datadiff-source)
     - [split_part](#split_part-source)
     - [last_day](#last_day-source)
     - [width_bucket](#width_bucket-source)
 
-- [Jinja Helpers](#jinja-helpers)
+- [Logger](#logger)
     - [pretty_time](#pretty_time-source)
     - [pretty_log_format](#pretty_log_format-source)
     - [log_info](#log_info-source)
@@ -222,7 +220,7 @@ models:
               to: ref('other_model_name')
 ```
 
-#### unique_where ([source](macros/schema_tests/test_unique_where.sql))
+#### unique_where ([source](macros/schema_tests/unique_where.sql))
 This test validates that there are no duplicate values present in a field for a subset of rows by specifying a `where` clause.
 
 **Usage:**
@@ -238,7 +236,7 @@ models:
               where: "_deleted = false"
 ```
 
-#### not_null_where ([source](macros/schema_tests/test_not_null_where.sql))
+#### not_null_where ([source](macros/schema_tests/not_null_where.sql))
 This test validates that there are no null values present in a column for a subset of rows by specifying a `where` clause.
 
 **Usage:**
@@ -252,22 +250,6 @@ models:
         tests:
           - dbt_utils.not_null_where:
               where: "_deleted = false"
-```
-
-#### not_null_proportion ([source](macros/schema_tests/not_null_proportion.sql))
-This test validates that the proportion of non-null values present in a column is between a specified range [`at_least`, `at_most`] where `at_most` is an optional argument (default: `1.0`).
-
-**Usage:**
-```yaml
-version: 2
-
-models:
-  - name: my_model
-    columns:
-      - name: id
-        tests:
-          - dbt_utils.not_null_proportion:
-              at_least: 0.95
 ```
 
 #### not_accepted_values ([source](macros/schema_tests/not_accepted_values.sql))
@@ -726,7 +708,7 @@ group by 1,2,3
 ```
 
 #### star ([source](macros/sql/star.sql))
-This macro generates a list of all fields that exist in the `from` relation, excluding any fields listed in the `except` argument. The construction is identical to `select * from {{ref('my_model')}}`, replacing star (`*`) with the star macro. This macro also has an optional `relation_alias` argument that will prefix all generated fields with an alias (`relation_alias`.`field_name`). The macro also has optional `prefix` and `suffix` arguments, which will be appropriately concatenated to each field name in the output (`prefix` ~ `field_name` ~ `suffix`).
+This macro generates a list of all fields that exist in the `from` relation, excluding any fields listed in the `except` argument. The construction is identical to `select * from {{ref('my_model')}}`, replacing star (`*`) with the star macro. This macro also has an optional `relation_alias` argument that will prefix all generated fields with an alias.
 
 **Usage:**
 ```sql

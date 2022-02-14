@@ -15,7 +15,7 @@ Begin
 	/************************************************************************************************
 	 * STEPS : This process is full load for each run
 	 * 1. Get All distinct allocated materials from fact sgm exluding exception rules
-	 * {{ source('2', ' Map material to GPP using mara table - ref_data') }}
+	 * {{ source('ref_data', 'sku_gpp_mapping') }}
 	 * 3. Anything left over - will be mapped to sequence below
 	 * 		ref_data.sku_barproduct_mapping_c11_bods
 	 * 		ref_data.sku_barproduct_mapping_p10_bods

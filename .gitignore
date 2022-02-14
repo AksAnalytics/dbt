@@ -3,6 +3,16 @@
 # Learn more about .gitignore:
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 
+##exclude the VScode envrionment folder
+.venv
+
+#### exclude dbt stuu
+target/
+dbt_modules/
+dbt_packages/
+logs/
+
+
 # Node artifact files
 node_modules/
 dist/

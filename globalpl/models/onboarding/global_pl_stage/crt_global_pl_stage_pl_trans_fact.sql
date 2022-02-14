@@ -51,21 +51,7 @@
 	,etl_crte_ts VARCHAR(50)   
 	,hive_loaddatetime VARCHAR(250)   
 	,PRIMARY KEY (bar_bods_record_id)
-)
-DISTSTYLE KEY
- DISTKEY (bar_bods_record_id)
- SORTKEY (
-	bar_account
-	, bar_customer
-	, bar_entity
-	, bar_product
-	, bar_period
-	, bar_year
-	, bar_bods_record_id
-	, erp_source
-	)
-;
-ALTER TABLE global_pl_stage.pl_trans_fact owner to base_admin; 
+) 
 	"
 }%} 
 

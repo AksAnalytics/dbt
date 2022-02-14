@@ -11,7 +11,7 @@
 	,cnt_records BIGINT   
 	,sum_bar_amt_lc NUMERIC(38,10)   
 	,sum_bar_amt_usd NUMERIC(38,10)   
-)
+) 
 	"
 }%} 
 

@@ -1,0 +1,67 @@
+version: 2
+
+sources:
+
+  - name: bods
+    database: RAW
+    tables:
+      - name: c11_0customer_attr
+      - name: extr_lawson_mac_cust
+      - name: extr_lawson_mac_prod
+      - name: c11_0material_attr
+      - name: drm_entity
+      - name: c11_0ec_pca3
+      - name: drm_customer
+      - name: drm_product
+      - name: hfm_vw_hfm_actual_trans
+      - name: lawson_mac_pl_trans
+      - name: p10_0ec_pca_3_trans
+      # - name: drm_customer  ## duplicate from models/stage/sources.yml
+      # - name: drm_product  ## duplicate from models/stage/sources.yml
+      # - name: c11_0ec_pca3  ## duplicate from models/stage/sources.yml
+      # - name: hfm_vw_hfm_actual_trans  ## duplicate from models/stage/sources.yml
+      # - name: lawson_mac_pl_trans  ## duplicate from models/stage/sources.yml
+      # - name: p10_0ec_pca_3_trans  ## duplicate from models/stage/sources.yml
+
+  - name: ref_data
+    database: RAW
+    tables:
+      # - name: 2. Map material to GPP using mara table - sku_gpp_mapping - based off mara
+      - name: hfmfxrates
+      # - name: hfmfxrates  ## duplicate from models/stage/sources.yml
+      - name: p_build_hfmfxrates
+      - name: hfmfxrates
+      - name:  sku_gpp_mapping
+
+  - name: sapp10
+    database: RAW
+    tables:
+      - name: kna1
+      - name: knvh
+      - name: makt
+
+  - name: sftpgtsi
+    database: RAW
+    tables:
+      - name: rsabible
+
+  - name: sapc11
+    database: RAW
+    tables:
+      - name: keko
+      - name: keph
+      - name: kna1
+      - name: marm
+      - name: mbew
+      - name: t001
+      - name: t001k
+      - name: knvh
+      - name: makt
+      - name: mara
+      - name: t023t
+    # - name: kna1  ## duplicate from models/stage/sources.yml
+
+  - name: source_poc
+    database: RAW
+    tables:
+      - name: hfmfxrates

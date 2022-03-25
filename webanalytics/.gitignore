@@ -1,4 +1,9 @@
-
+# dbt artifacts to ignore
 target/
+dbt_modules/
 dbt_packages/
 logs/
+.venv/
+
+## Visual studio code workspace file
+*.code-workspace
